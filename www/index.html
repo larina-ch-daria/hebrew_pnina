@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мора Пнина — иврит для первых недель</title>
+<meta name="theme-color" content="#0B5873">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Пнина">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<script>window.PNINA_PWA=true;</script>
+<style>.hefont{font-family:"Frank Ruhl Libre","Times New Roman",serif}
+
+:root{
+  --bg:#EEF5F4; --surface:#FFFFFF; --ink:#16303A; --muted:#5B7480;
+  --sea:#0B5873; --pepper:#C8243B; --cat:#6E9F4E; --line:#CFE0E0; --soft:#DCEBEA;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C2430; --surface:#12313F; --ink:#E4EFEF; --muted:#93AEB7;
+    --sea:#8ED2E6; --pepper:#FF6F7F; --cat:#8CBF68; --line:#24495A; --soft:#173B4B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C2430; --surface:#12313F; --ink:#E4EFEF; --muted:#93AEB7;
+  --sea:#8ED2E6; --pepper:#FF6F7F; --cat:#8CBF68; --line:#24495A; --soft:#173B4B;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+  font-family:"Rubik",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:17px;line-height:1.55}
+.wrap{max-width:620px;margin:0 auto;padding:16px 18px 48px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sea);outline-offset:2px;border-radius:6px}
+
+header{display:flex;align-items:center;gap:12px;padding:6px 0 14px;border-bottom:1px solid var(--line)}
+header .name{font-weight:700;font-size:20px;line-height:1.1}
+header .name bdi{font-family:"Frank Ruhl Libre","Times New Roman",serif;color:var(--sea);font-weight:700;margin-left:6px}
+header .count{font-size:14px;color:var(--muted)}
+header .count b{color:var(--sea)}
+nav{display:flex;gap:4px;margin:12px 0 18px;flex-wrap:wrap}
+nav button{background:none;border:0;padding:6px 12px;border-radius:999px;color:var(--muted);font-size:15px}
+nav button[aria-current="true"]{background:var(--soft);color:var(--ink);font-weight:500}
+nav .spacer{flex:1}
+.toggle{border:1px solid var(--line)!important;font-size:14px!important}
+.toggle[aria-pressed="true"]{border-color:var(--sea)!important;color:var(--sea)!important}
+
+.scene{display:flex;gap:12px;align-items:flex-start}
+.cat{flex:0 0 56px;width:56px;height:56px}
+.bubble{background:var(--surface);border:1px solid var(--line);border-radius:4px 18px 18px 18px;padding:12px 16px;flex:1;min-width:0}
+.lines p{margin:0 0 10px}
+.lines p:last-child{margin-bottom:0}
+.lines p.fresh{animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.lines p.fresh{animation:none}}
+
+.w{font-family:"Frank Ruhl Libre","Times New Roman",serif;font-weight:700;color:var(--sea);font-size:1.18em;
+  cursor:pointer;border-radius:4px;padding:0 1px}
+.w:hover{background:var(--soft)}
+.w.form{text-decoration:underline dotted var(--pepper);text-decoration-thickness:2px;text-underline-offset:5px}
+ruby rt{font-family:"Rubik",sans-serif;font-weight:400;font-size:.52em;color:var(--muted);letter-spacing:.02em}
+.intro{cursor:pointer;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--cat) 35%,transparent) 62%)}
+.intro rt{font-family:"Frank Ruhl Libre",serif;font-size:.7em;color:var(--pepper);font-weight:700}
+.name-tok{cursor:pointer;border-bottom:1px dashed var(--muted)}
+p.flip{font-family:"Frank Ruhl Libre",serif;font-size:1.25em;text-align:right}
+p.flip .w{font-size:1em}
+.flipmeta{display:block;font-family:"Rubik",sans-serif;font-size:13px;color:var(--muted);text-align:left;margin-top:2px}
+.flipmeta button{background:none;border:0;padding:0;color:var(--sea);font-size:13px;text-decoration:underline}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{background:var(--sea);color:var(--bg);border:0;border-radius:12px;padding:12px 20px;font-weight:500}
+.btn.ghost{background:none;color:var(--sea);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.reply{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.reply button{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:8px 18px;
+  font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:22px;color:var(--sea)}
+.reply button:hover{border-color:var(--sea)}
+.reply rt{font-size:.5em}
+.prompt{color:var(--muted);font-size:15px;margin:16px 0 0}
+
+h2{font-size:22px;font-weight:700;margin:4px 0 6px;line-height:1.25}
+.sub{color:var(--muted);margin:0 0 16px}
+
+.cards{display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.card .big{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:44px;line-height:1.1;color:var(--sea);direction:rtl;text-align:right}
+.card .tr{color:var(--muted)}
+.card .ru{font-weight:500;font-size:19px}
+.card ul{margin:8px 0 0;padding-left:18px;font-size:15px;color:var(--muted)}
+.card ul bdi{font-family:"Frank Ruhl Libre",serif;font-weight:700;color:var(--sea);font-size:1.15em}
+
+.q{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.q .ask{font-size:15px;color:var(--muted);margin:0 0 6px}
+.q .target{font-size:28px;font-weight:500;margin:0 0 16px}
+.q .target.he{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:48px;color:var(--sea);direction:rtl;text-align:right;line-height:1.15}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts button{background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:12px;min-height:56px}
+.opts button.he{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:26px;color:var(--sea)}
+.opts button.right{border-color:#2E8B57;background:color-mix(in srgb,#2E8B57 14%,var(--bg))}
+.opts button.wrong{border-color:var(--pepper);background:color-mix(in srgb,var(--pepper) 12%,var(--bg))}
+.feedback{margin:14px 0 0;font-size:15px}
+.progress{height:6px;background:var(--soft);border-radius:3px;margin:0 0 16px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--cat);border-radius:3px;transition:width .2s}
+
+.list{display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.row .he{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:24px;color:var(--sea);min-width:80px;text-align:right}
+.row .meta{flex:1;min-width:0}
+.row .meta small{display:block;color:var(--muted);font-size:13px}
+.dots{display:flex;gap:3px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--cat)}
+.row.locked{opacity:.5}
+.row button{background:none;border:0;padding:0;text-align:left;flex:1}
+
+.sheet-bg{position:fixed;inset:0;background:rgba(5,20,28,.35);display:flex;align-items:flex-end;justify-content:center;z-index:10}
+.sheet{background:var(--surface);width:100%;max-width:620px;border-radius:20px 20px 0 0;padding:20px 22px calc(22px + env(safe-area-inset-bottom,0px));
+  box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.sheet .big{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:48px;color:var(--sea);direction:rtl;text-align:right;line-height:1.1}
+.sheet .tr{color:var(--muted)}
+.sheet .note{margin-top:12px;padding:10px 12px;border-left:3px solid var(--pepper);background:var(--bg);border-radius:0 10px 10px 0;font-size:15px}
+.sheet .note bdi{font-family:"Frank Ruhl Libre",serif;font-weight:700;color:var(--sea);font-size:1.2em}
+.sheet .close{margin-top:14px}
+
+.settings{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.settings button{background:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;margin:6px 6px 0 0;color:var(--muted)}
+.empty{color:var(--muted)}
+.log{display:grid;gap:10px}
+.msg{display:flex;gap:10px;align-items:flex-start}
+.msg .who{font-size:12px;color:var(--muted);margin-bottom:2px}
+.msg .bubble p{margin:0}
+.msg.n .av{flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:var(--soft);color:var(--sea);display:grid;place-items:center;font-weight:700;margin-left:8px}
+.msg.n .bubble{border-color:var(--sea);border-radius:4px 18px 18px 18px}
+.msg.me{justify-content:flex-end}
+.msg.me .bubble{flex:0 1 auto;background:var(--sea);color:var(--bg);border-color:var(--sea);border-radius:18px 4px 18px 18px;text-align:right}
+.msg.me .w{color:var(--bg)}
+.msg.me rt{color:color-mix(in srgb,var(--bg) 75%,transparent)}
+.msg.fresh{animation:pop .25s ease-out}
+@media (prefers-reduced-motion: reduce){.msg.fresh{animation:none}}
+.cat.sm{flex:0 0 40px;width:40px;height:40px;margin-left:8px}
+.gl{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:1.15em;color:var(--ink);cursor:pointer;
+  text-decoration:underline dotted var(--muted);text-underline-offset:5px}
+.slot{font-family:"Rubik",sans-serif;font-weight:500;font-size:.8em;color:var(--pepper)}
+.choice{margin-top:12px;background:var(--surface);border:1px dashed var(--line);border-radius:16px;padding:14px}
+.choice .hint{font-size:15px;color:var(--muted);margin:0 0 10px}
+.choice .reply{margin-top:0}
+.reply button{text-align:right}
+.reply button small{display:block;font-family:"Rubik",sans-serif;font-weight:400;font-size:13px;color:var(--muted);text-align:left;direction:ltr}
+.reply button:disabled{opacity:.4;cursor:default}
+.say{background:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:14px;color:var(--sea)}
+.group{margin:18px 0 8px;font-weight:500}
+.opts button small{display:block;font-family:"Rubik",sans-serif;font-size:12px;color:var(--muted);font-weight:400}
+.sit{font-size:20px;font-weight:500;margin:0 0 16px}
+.ktav{font-family:"Playpen Sans Hebrew","Frank Ruhl Libre",serif;font-weight:500;color:var(--sea)}
+.ktavline{display:flex;align-items:baseline;gap:10px;justify-content:flex-end;margin:2px 0 4px}
+.ktavline span{font-size:12px;color:var(--muted)}
+.ktavline .ktav{font-size:30px;line-height:1.3}
+.row .he{display:flex;flex-direction:column;align-items:flex-end;gap:0}
+.row .he .ktav.small{font-size:17px;font-weight:400}
+.inl{font-family:"Frank Ruhl Libre",serif;font-weight:700;color:var(--sea);font-size:1.15em}
+.abcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.abc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 8px;text-align:center;display:grid;grid-template-columns:1fr 1fr;align-items:center;row-gap:2px}
+.abc .pr{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:34px;color:var(--ink)}
+.abc .ktav{font-size:34px}
+.abc .nm,.abc small{grid-column:1/3;direction:ltr}
+.abc .nm{font-size:14px;font-weight:500}
+.abc small{font-size:11px;color:var(--muted);line-height:1.3}
+/* режим «всё от руки» */
+.ktav-all .w,.ktav-all .gl,.ktav-all .hefont,.ktav-all .intro rt,.ktav-all .inl,.ktav-all .sheet .big,.ktav-all .card .big,.ktav-all .note bdi,.ktav-all .card ul bdi{font-family:"Playpen Sans Hebrew","Frank Ruhl Libre",serif!important;font-weight:500!important}
+.signwrap{margin-top:8px}
+.sign{display:inline-block;font-family:"Rubik",Arial,sans-serif!important;font-weight:700!important;font-size:26px;line-height:1.2;padding:8px 18px;border-radius:6px;cursor:pointer;box-shadow:0 1px 0 rgba(0,0,0,.15)}
+.sign.sm{font-size:17px;padding:4px 10px}
+.sg-exit{background:#1E8E3E;color:#fff}
+.sg-info{background:#1F4E8C;color:#fff}
+.sg-shop{background:#FFD23F;color:#B3001B;border-radius:999px}
+.sg-warn{background:#FFC400;color:#111;border:3px solid #111}
+.sg-door{background:#fff;color:#111;border:2px solid #9AA}
+.sg-label{background:#fff;color:#0B5873;border:2px dashed #0B5873;border-radius:12px}
+.sg-taxi{background:#111;color:#FFD23F}
+.sign-cap{font-size:13px;color:var(--muted);margin-top:4px}
+.qsign{margin:0 0 16px;text-align:right}
+.qsign .sign{font-size:36px;padding:12px 26px}
+.sc{color:var(--pepper)!important}
+.who-btn{white-space:nowrap}
+.newp label{display:block;font-size:14px;color:var(--muted);margin-bottom:12px}
+.newp label small{font-size:12px}
+.newp textarea{display:block;width:100%;font:13px/1.4 monospace;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+.newp input{display:block;width:100%;margin-top:4px;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.gsel{display:flex;gap:8px;margin:4px 0}
+.gsel button{flex:1;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px}
+.gsel button[aria-checked="true"]{border-color:var(--sea);color:var(--sea);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div id="sheet"></div>
+<div id="toast" hidden style="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;max-width:90%;font-size:14px;z-index:20"></div>
+<script>
+/* ===== Фразы и слова =====
+   kind: p — фраза, w — слово. ___ — место для подстановки.
+   when — ситуация, по которой проверяется фраза. */
+const ITEMS = {
+  shalom:{he:'שָׁלוֹם',tr:'шало́м',ru:'привет / пока',day:1,kind:'w'},
+  toda:{he:'תּוֹדָה',tr:'тода́',ru:'спасибо',day:1,kind:'w'},
+  bevakasha:{he:'בְּבַקָּשָׁה',tr:'бевакаша́',ru:'пожалуйста / не за что / проходите',day:1,kind:'w'},
+  slicha:{he:'סְלִיחָה',tr:'слиха́',ru:'извините / простите',day:1,kind:'w'},
+  ken:{he:'כֵּן',tr:'кен',ru:'да',day:1,kind:'w'},
+  lo:{he:'לֹא',tr:'ло',ru:'нет / не',day:1,kind:'w'},
+
+  lomevina:{he:'אֲנִי לֹא מְבִינָה',tr:'ани́ ло мевина́',ru:'я не понимаю',day:2,kind:'p',when:'Тебе быстро что-то сказали, и ты не {поняла|понял} ни слова.',note:'Женская форма. Мужчина скажет אֲנִי לֹא מֵבִין (ани ло меви́н).',m:{he:'אֲנִי לֹא מֵבִין',tr:'ани́ ло меви́н',note:'Мужская форма. Женщина скажет אֲנִי לֹא מְבִינָה (мевина́).'}},
+  leat:{he:'אֶפְשָׁר יוֹתֵר לְאַט?',tr:'эфша́р йоте́р леа́т?',ru:'можно помедленнее?',day:2,kind:'p',when:'Человек говорит слишком быстро.'},
+  odpaam:{he:'עוֹד פַּעַם, בְּבַקָּשָׁה',tr:'од па́ам, бевакаша́',ru:'ещё раз, пожалуйста',day:2,kind:'p',when:'Ты не {расслышала|расслышал} и хочешь, чтобы повторили.'},
+  medaber:{he:'אַתָּה מְדַבֵּר ___?',tr:'ата́ медабе́р ___?',ru:'вы говорите ___? (к мужчине)',day:2,kind:'p',when:'Хочешь узнать у мужчины, говорит ли он на другом языке.',note:'В иврите на «ты» со всеми, а форма зависит от пола собеседника. К женщине: אַתְּ מְדַבֶּרֶת ___?'},
+  anglit:{he:'אַנְגְּלִית',tr:'англи́т',ru:'английский',day:2,kind:'w'},
+  rusit:{he:'רוּסִית',tr:'руси́т',ru:'русский',day:2,kind:'w'},
+  lomedet:{he:'אֲנִי לוֹמֶדֶת עִבְרִית',tr:'ани́ ломе́дет иври́т',ru:'я учу иврит',day:2,kind:'p',when:'Объясняешь, почему говоришь медленно и с ошибками.',note:'Женская форма. Мужчина скажет אֲנִי לוֹמֵד עִבְרִית (ломе́д).',m:{he:'אֲנִי לוֹמֵד עִבְרִית',tr:'ани́ ломе́д иври́т',note:'Мужская форма. Женщина скажет אֲנִי לוֹמֶדֶת עִבְרִית (ломе́дет).'}},
+
+  kama:{he:'כַּמָּה זֶה עוֹלֶה?',tr:'ка́ма зе оле́?',ru:'сколько это стоит?',day:3,kind:'p',when:'На товаре нет ценника.'},
+  efshar:{he:'אֶפְשָׁר ___, בְּבַקָּשָׁה?',tr:'эфша́р ___, бевакаша́?',ru:'можно ___, пожалуйста?',day:3,kind:'p',when:'Просишь, чтобы тебе что-то дали.',note:'Универсальная рамка: подставляй любое слово. Работает в кафе, в магазине, в банке.'},
+  yeshlachem:{he:'יֵשׁ לָכֶם ___?',tr:'еш лахе́м ___?',ru:'у вас есть ___?',day:3,kind:'p',when:'Не {нашла|нашёл} товар и спрашиваешь, бывает ли он у них.'},
+  zehu:{he:'זֶהוּ, תּוֹדָה',tr:'зе́hу, тода́',ru:'это всё, спасибо',day:3,kind:'p',when:'Спрашивают, нужно ли что-то ещё. Не нужно.'},
+  shakit:{he:'שַׂקִּית',tr:'саки́т',ru:'пакет',day:3,kind:'w'},
+  mayim:{he:'מַיִם',tr:'ма́йим',ru:'вода',day:3,kind:'w'},
+  ashrai:{he:'אַשְׁרַאי',tr:'ашра́й',ru:'кредитка, «картой?»',day:3,kind:'w'},
+
+  eifo:{he:'אֵיפֹה ___?',tr:'эйфо́ ___?',ru:'где ___?',day:4,kind:'p',when:'Ищешь, где что-то находится.'},
+  sherutim:{he:'שֵׁרוּתִים',tr:'шеру́тим',ru:'туалет',day:4,kind:'w'},
+  tachana:{he:'תַּחֲנָה',tr:'тахана́',ru:'остановка, станция',day:4,kind:'w'},
+  nosea:{he:'זֶה נוֹסֵעַ לְ___?',tr:'зе носэ́а ле___?',ru:'это едет в ___?',day:4,kind:'p',when:'Подошёл автобус или поезд, и ты проверяешь, туда ли он едет.',note:'לְ — «в / к», приклеивается к названию: לְחֵיפָה, לְתֵל אָבִיב.'},
+  ravkav:{he:'רַב־קַו',tr:'рав-ка́в',ru:'Рав-Кав, проездная карта',day:4,kind:'w'},
+
+  achat:{he:'אַחַת',tr:'аха́т',ru:'один / одна',day:5,kind:'w'},
+  shtayim:{he:'שְׁתַּיִם',tr:'шта́им',ru:'два / две',day:5,kind:'w'},
+  shalosh:{he:'שָׁלוֹשׁ',tr:'шало́ш',ru:'три',day:5,kind:'w'},
+  chamesh:{he:'חָמֵשׁ',tr:'хаме́ш',ru:'пять',day:5,kind:'w'},
+  eser:{he:'עֶשֶׂר',tr:'э́сер',ru:'десять',day:5,kind:'w'},
+  esrim:{he:'עֶשְׂרִים',tr:'эсри́м',ru:'двадцать',day:5,kind:'w'},
+  shekel:{he:'שֶׁקֶל',tr:'ше́кель',ru:'шекель',day:5,kind:'w',note:'В разговоре после числа часто говорят просто שֶׁקֶל: חָמֵשׁ שֶׁקֶל — «пять шекель». По правилам — שְׁקָלִים, но на рынке так никто не говорит.'},
+  yakar:{he:'זֶה יָקָר מִדַּי',tr:'зе яка́р мида́й',ru:'это слишком дорого',day:5,kind:'p',when:'Цена слишком высокая, и ты хочешь поторговаться.'},
+
+  rotza:{he:'אֲנִי רוֹצָה ___',tr:'ани́ роца́ ___',ru:'я хочу ___',day:6,kind:'p',when:'Заказываешь в кафе.',note:'Женская форма. Мужчина скажет אֲנִי רוֹצֶה (роце́).',m:{he:'אֲנִי רוֹצֶה ___',tr:'ани́ роце́ ___',note:'Мужская форма. Женщина скажет אֲנִי רוֹצָה (роца́).'}},
+  kafe:{he:'קָפֶה',tr:'кафе́',ru:'кофе',day:6,kind:'w'},
+  hafuch:{he:'הָפוּךְ',tr:'hафу́х',ru:'«афух» — кофе с молоком',day:6,kind:'w',note:'Буквально «перевёрнутый». Похож на латте.'},
+  bli:{he:'בְּלִי ___',tr:'бли ___',ru:'без ___',day:6,kind:'p',when:'Хочешь, чтобы чего-то не добавляли.'},
+  sukar:{he:'סֻכָּר',tr:'сука́р',ru:'сахар',day:6,kind:'w'},
+  cheshbon:{he:'חֶשְׁבּוֹן',tr:'хешбо́н',ru:'счёт',day:6,kind:'w'},
+  po:{he:'פֹּה',tr:'по',ru:'здесь',day:6,kind:'w'},
+
+  lo_oved:{he:'___ לֹא עוֹבֵד',tr:'___ ло ове́д',ru:'___ не работает',day:7,kind:'p',when:'Что-то сломалось, и надо сказать об этом.',note:'עוֹבֵד — для слов мужского рода. Для женского: לֹא עוֹבֶדֶת.'},
+  mazgan:{he:'מַזְגָן',tr:'мазга́н',ru:'кондиционер',day:7,kind:'w'},
+  dud:{he:'דּוּד',tr:'дуд',ru:'бойлер',day:7,kind:'w',note:'Бойлер в Израиле часто надо включать кнопкой заранее, минут за 20–40 до душа.'},
+  bayaa:{he:'יֵשׁ בְּעָיָה עִם ___',tr:'еш бэая́ им ___',ru:'есть проблема с ___',day:7,kind:'p',when:'Сообщаешь о неполадке, не объясняя деталей.'},
+  matay:{he:'מָתַי?',tr:'мата́й?',ru:'когда?',day:7,kind:'w'},
+  hadasha:{he:'אֲנִי חֲדָשָׁה פֹּה',tr:'ани́ хадаша́ по',ru:'я тут {новенькая|новенький}',day:7,kind:'p',when:'Знакомишься с соседями или объясняешь, почему не знаешь, как тут всё устроено.',note:'Женская форма. Мужчина скажет אֲנִי חָדָשׁ פֹּה.',m:{he:'אֲנִי חָדָשׁ פֹּה',tr:'ани́ хада́ш по',note:'Мужская форма. Женщина скажет אֲנִי חֲדָשָׁה פֹּה.'}},
+
+  tsricha:{he:'אֲנִי צְרִיכָה ___',tr:'ани́ црихá ___',ru:'мне нужно ___',day:8,kind:'p',when:'Объясняешь, зачем {пришла|пришёл}.',note:'Женская форма. Мужчина скажет אֲנִי צָרִיךְ (цари́х).',m:{he:'אֲנִי צָרִיךְ ___',tr:'ани́ цари́х ___',note:'Мужская форма. Женщина скажет אֲנִי צְרִיכָה (црихá).'}},
+  simcard:{he:'כַּרְטִיס סִים',tr:'карти́с сим',ru:'сим-карта',day:8,kind:'w'},
+  darkon:{he:'דַּרְכּוֹן',tr:'даркóн',ru:'паспорт',day:8,kind:'w'},
+  mispar:{he:'מִסְפָּר',tr:'миспа́р',ru:'номер',day:8,kind:'w'},
+  rega:{he:'רֶגַע',tr:'ре́га',ru:'минутку!',day:8,kind:'w'},
+  cheshbonbank:{he:'חֶשְׁבּוֹן בַּנְק',tr:'хешбо́н банк',ru:'банковский счёт',day:8,kind:'w',note:'חֶשְׁבּוֹן — тот же «счёт», что в кафе.'},
+
+  koev:{he:'כּוֹאֵב לִי ___',tr:'коэ́в ли ___',ru:'у меня болит ___',day:9,kind:'p',when:'Объясняешь врачу или фармацевту, что болит.',note:'Глагол согласуется с тем, что болит. Для слов женского рода: כּוֹאֶבֶת לִי ___.'},
+  rosh:{he:'רֹאשׁ',tr:'рош',ru:'голова',day:9,kind:'w'},
+  beten:{he:'בֶּטֶן',tr:'бе́тен',ru:'живот',day:9,kind:'w',note:'Женского рода.'},
+  gaaron:{he:'גָּרוֹן',tr:'гаро́н',ru:'горло',day:9,kind:'w'},
+  chom:{he:'יֵשׁ לִי חֹם',tr:'еш ли хом',ru:'у меня температура',day:9,kind:'p',when:'Тебя знобит, градусник показывает 38.'},
+  trufa:{he:'תְּרוּפָה',tr:'труфа́',ru:'лекарство',day:9,kind:'w'},
+  kupa:{he:'קֻפַּת חוֹלִים',tr:'купа́т холи́м',ru:'больничная касса',day:9,kind:'w',note:'Местная страховая поликлиника. Через неё идёт вся медицина: врачи, анализы, рецепты.'},
+
+  korim:{he:'קוֹרְאִים לִי ___',tr:'корʼи́м ли ___',ru:'меня зовут ___',day:10,kind:'p',when:'Представляешься.'},
+  ani_me:{he:'אֲנִי מֵ___',tr:'ани́ ме___',ru:'я из ___',day:10,kind:'p',when:'Тебя спросили, откуда ты.',note:'מֵ — «из», приклеивается к названию: מֵרוּסְיָה, מֵהוֹלַנְד.'},
+  naim:{he:'נָעִים מְאוֹד',tr:'наи́м мео́д',ru:'очень приятно',day:10,kind:'p',when:'Тебе только что представились.'},
+  eich_omrim:{he:'אֵיךְ אוֹמְרִים ___ בְּעִבְרִית?',tr:'эйх омри́м ___ бе-иври́т?',ru:'как сказать ___ на иврите?',day:10,kind:'p',when:'Не знаешь, как сказать какое-то слово.'},
+  ma_ze:{he:'מָה זֶה?',tr:'ма зе?',ru:'что это?',day:10,kind:'p',when:'Видишь или слышишь что-то незнакомое.'},
+
+  tor:{he:'תּוֹר',tr:'тор',ru:'очередь, запись (на приём)',day:11,kind:'w'},
+  mi_acharon:{he:'מִי אַחֲרוֹן?',tr:'ми ахаро́н?',ru:'кто последний?',day:11,kind:'p',when:'Подходишь к живой очереди.'},
+  tofes:{he:'טֹפֶס',tr:'то́фес',ru:'бланк, форма',day:11,kind:'w'},
+  mismachim:{he:'מִסְמָכִים',tr:'мисмахи́м',ru:'документы',day:11,kind:'w'},
+  lo_yodaat:{he:'אֲנִי לֹא יוֹדַעַת',tr:'ани́ ло йода́ат',ru:'я не знаю',day:11,kind:'p',when:'Тебя спросили, а ответа у тебя нет.',note:'Женская форма. Мужчина скажет אֲנִי לֹא יוֹדֵעַ. Не путай с «не понимаю»: здесь ты {поняла|понял} вопрос, но не знаешь ответа.',m:{he:'אֲנִי לֹא יוֹדֵעַ',tr:'ани́ ло йоде́а',note:'Мужская форма. Женщина скажет אֲנִי לֹא יוֹדַעַת. Не путай с «не понимаю»: здесь ты понял вопрос, но не знаешь ответа.'}},
+
+  ma_hashaa:{he:'מָה הַשָּׁעָה?',tr:'ма hашаа́?',ru:'который час?',day:12,kind:'p',when:'Телефон сел, а надо знать время.'},
+  patuach:{he:'פָּתוּחַ',tr:'пату́ах',ru:'открыто',day:12,kind:'w'},
+  sagur:{he:'סָגוּר',tr:'сагу́р',ru:'закрыто',day:12,kind:'w'},
+  shabbat:{he:'שַׁבָּת שָׁלוֹם',tr:'шаба́т шало́м',ru:'шаббат шалом',day:12,kind:'p',when:'Пятница, все расходятся по домам. Как попрощаться?'},
+  machar:{he:'מָחָר',tr:'маха́р',ru:'завтра',day:12,kind:'w'},
+  hayom:{he:'הַיּוֹם',tr:'hайо́м',ru:'сегодня',day:12,kind:'w'},
+  ad_matay:{he:'עַד מָתַי פָּתוּחַ?',tr:'ад мата́й пату́ах?',ru:'до скольки открыто?',day:12,kind:'p',when:'Хочешь узнать, успеешь ли вернуться в магазин.',note:'עַד — «до». Сравни: מָתַי? — «когда?».'},
+
+  hatsilu:{he:'הַצִּילוּ!',tr:'hацилу́!',ru:'помогите!',day:13,kind:'p',when:'Нужна срочная помощь, зови всех вокруг.'},
+  titkasheru:{he:'תִּתְקַשְּׁרוּ ___!',tr:'титкашру́ ___!',ru:'позвоните в ___!',day:13,kind:'p',when:'Просишь людей вокруг вызвать помощь.'},
+  ambulans:{he:'אַמְבּוּלַנְס',tr:'амбула́нс',ru:'скорая (101)',day:13,kind:'w'},
+  mishtara:{he:'מִשְׁטָרָה',tr:'миштара́',ru:'полиция (100)',day:13,kind:'w'},
+  lo_margisha:{he:'אֲנִי לֹא מַרְגִּישָׁה טוֹב',tr:'ани́ ло маргиша́ тов',ru:'мне плохо, я плохо себя чувствую',day:13,kind:'p',when:'Тебе стало нехорошо.',note:'Женская форма. Мужчина скажет אֲנִי לֹא מַרְגִּישׁ טוֹב.',m:{he:'אֲנִי לֹא מַרְגִּישׁ טוֹב',tr:'ани́ ло марги́ш тов',note:'Мужская форма. Женщина скажет אֲנִי לֹא מַרְגִּישָׁה טוֹב.'}},
+  lealbud:{he:'הָלַכְתִּי לְאִבּוּד',tr:'hалахти́ леибу́д',ru:'я {потерялась|потерялся}',day:13,kind:'p',when:'Не понимаешь, где находишься.'},
+  miklat:{he:'מִקְלָט',tr:'микла́т',ru:'убежище',day:13,kind:'w'},
+};
+const FORMS = {
+  medaberet:{base:'medaber',he:'אַתְּ מְדַבֶּרֶת ___?',tr:'ат медабе́рет ___?',ru:'вы говорите ___? (к женщине)',note:'Та же фраза, но к женщине: אַתָּה → אַתְּ, а глагол получает окончание ־ֶת.'},
+  hasherutim:{base:'sherutim',he:'הַשֵּׁרוּתִים',tr:'hашеру́тим',ru:'туалет (тот самый)',note:'הַ — артикль «тот самый». Спрашивая «где туалет», имеешь в виду конкретный, поэтому с артиклем.'},
+  hatachana:{base:'tachana',he:'הַתַּחֲנָה',tr:'hатахана́',ru:'остановка (та самая)',note:'הַ — артикль. Спрашиваешь про конкретную остановку.'},
+  beeser:{base:'eser',he:'בְּעֶשֶׂר',tr:'бе-э́сер',ru:'за десять / в десять',note:'בְּ — «за» (о цене) или «в» (о времени): שָׁלוֹשׁ בְּעֶשֶׂר — «три за десять», בְּעֶשֶׂר — «в десять часов».'},
+  beesrim:{base:'esrim',he:'בְּעֶשְׂרִים',tr:'бе-эсри́м',ru:'за двадцать',note:'בְּ — «за» (о цене), приклеивается к числу.'},
+  et_hacheshbon:{base:'cheshbon',he:'אֶת הַחֶשְׁבּוֹן',tr:'эт hахешбо́н',ru:'счёт (этот)',note:'הַ — артикль. А אֶת ставится перед определённым прямым дополнением: «можно (что?) этот счёт». На русский не переводится.'},
+  hamazgan:{base:'mazgan',he:'הַמַּזְגָן',tr:'hамазга́н',ru:'кондиционер (тот самый)',note:'הַ — артикль: речь о конкретном кондиционере, твоём.'},
+  hadud:{base:'dud',he:'הַדּוּד',tr:'hаду́д',ru:'бойлер (тот самый)',note:'הַ — артикль.'},
+  mispar_tel:{base:'mispar',he:'מִסְפַּר טֶלֶפוֹן',tr:'миспа́р телефо́н',ru:'номер телефона',note:'Перед другим словом מִסְפָּר меняет гласную на מִסְפַּר. Так в иврите связывают два слова: «номер телефона» без всякого «чего».'},
+  koevet:{base:'koev',he:'כּוֹאֶבֶת לִי ___',tr:'коэ́вет ли ___',ru:'у меня болит ___ (о слове женского рода)',note:'בֶּטֶן — женского рода, поэтому и глагол женский: כּוֹאֶבֶת.'},
+  harosh:{base:'rosh',he:'הָרֹאשׁ',tr:'hаро́ш',ru:'голова',note:'הָ — артикль. Перед ר он звучит как hа- с долгой гласной.'},
+  habeten:{base:'beten',he:'הַבֶּטֶן',tr:'hабе́тен',ru:'живот',note:'הַ — артикль.'},
+  hagaron:{base:'gaaron',he:'הַגָּרוֹן',tr:'hагаро́н',ru:'горло',note:'הַ — артикль.'},
+  beanglit:{base:'anglit',he:'בְּאַנְגְּלִית',tr:'бе-англи́т',ru:'по-английски',note:'בְּ — «на» (языке): בְּאַנְגְּלִית — по-английски, בְּעִבְרִית — на иврите.'},
+  leambulans:{base:'ambulans',he:'לְאַמְבּוּלַנְס',tr:'ле-амбула́нс',ru:'в скорую',note:'לְ — «в / к».'},
+  lamishtara:{base:'mishtara',he:'לַמִּשְׁטָרָה',tr:'ла-миштара́',ru:'в полицию',note:'לְ + הַ = לַ: предлог «съедает» артикль.'},
+  hamiklat:{base:'miklat',he:'הַמִּקְלָט',tr:'hамикла́т',ru:'убежище (ближайшее)',note:'הַ — артикль.'},
+};
+/* То, что говорят тебе: учить не обязательно, достаточно узнавать */
+const GLOSS = {
+  '~paam':{he:'פַּעַם רִאשׁוֹנָה בָּאָרֶץ?',tr:'па́ам ришона́ ба-а́рец?',ru:'первый раз в стране?'},
+  '~bruchah':{he:'בְּרוּכָה הַבָּאָה!',tr:'бруха́ hаба́а!',ru:'добро пожаловать! (к женщине)',m:{he:'בָּרוּךְ הַבָּא!',tr:'бару́х hаба́!',ru:'добро пожаловать! (к мужчине)'}},
+  '~lean':{he:'לְאָן נוֹסְעִים?',tr:'леа́н носъи́м?',ru:'куда едем?'},
+  '~ktsat':{he:'קְצָת',tr:'кцат',ru:'немного'},
+  '~kolhakavod':{he:'כָּל הַכָּבוֹד!',tr:'коль hакаво́д!',ru:'молодец! здорово!'},
+  '~esrim':{he:'עֶשְׂרִים שֶׁקֶל',tr:'эсри́м ше́кель',ru:'двадцать шекелей'},
+  '~eser':{he:'עֶשֶׂר שֶׁקֶל',tr:'э́сер ше́кель',ru:'десять шекелей'},
+  '~odmashehu':{he:'עוֹד מַשֶּׁהוּ?',tr:'од ма́шеhу?',ru:'что-нибудь ещё?'},
+  '~yashar':{he:'יָשָׁר וּשְׂמֹאלָה',tr:'яша́р у-смо́ла',ru:'прямо и налево'},
+  '~boker':{he:'בֹּקֶר טוֹב',tr:'бо́кер тов',ru:'доброе утро'},
+  '~kafe':{he:'קָפֶה?',tr:'кафе́?',ru:'кофе?'},
+  '~ulpan':{he:'שָׁלוֹם, מְדַבְּרִים מֵהָאוּלְפָּן',tr:'шало́м, медабри́м меhа-улпа́н',ru:'здравствуйте, это из ульпана'},
+  '~besederTV':{he:'בְּסֵדֶר, חֲמֵשׁ עֶשְׂרֵה',tr:'бесе́дер, хамеш эсре́',ru:'ладно, пятнадцать'},
+  '~15':{he:'חֲמֵשׁ עֶשְׂרֵה',tr:'хамеш эсре́',ru:'пятнадцать'},
+  '~sheva':{he:'שֶׁבַע',tr:'ше́ва',ru:'семь'},
+  '~bishvilech':{he:'מָה בִּשְׁבִילֵךְ?',tr:'ма бишвиле́х?',ru:'что будешь? (к женщине)',m:{he:'מָה בִּשְׁבִילְךָ?',tr:'ма бишвилха́?',ru:'что будешь? (к мужчине)'}},
+  '~po_o':{he:'פֹּה אוֹ לָקַחַת?',tr:'по о лака́хат?',ru:'здесь или с собой?'},
+  '~beseder':{he:'בְּסֵדֶר',tr:'бесе́дер',ru:'хорошо, ладно'},
+  '~at_chadasha':{he:'אַתְּ חֲדָשָׁה פֹּה?',tr:'ат хадаша́ по?',ru:'ты тут {новенькая|новенький}?',m:{he:'אַתָּה חָדָשׁ פֹּה?',tr:'ата́ хада́ш по?',ru:'ты тут новенький?'}},
+  '~mazgan_oved':{he:'הַמַּזְגָן עוֹבֵד?',tr:'hамазга́н ове́д?',ru:'кондиционер работает?'},
+  '~titkashri':{he:'תִּתְקַשְּׁרִי לְבַעַל הַבַּיִת',tr:'титкашри́ ле-ба́аль hаба́йит',ru:'позвони хозяину квартиры',m:{he:'תִּתְקַשֵּׁר לְבַעַל הַבַּיִת',tr:'титкаше́р ле-ба́аль hаба́йит',ru:'позвони хозяину квартиры'}},
+  '~machar':{he:'מָחָר',tr:'маха́р',ru:'завтра'},
+  '~tachtemi':{he:'תַּחְתְּמִי פֹּה',tr:'тахтэ́ми по',ru:'подпиши здесь',m:{he:'תַּחְתֹּם פֹּה',tr:'тахто́м по',ru:'подпиши здесь'}},
+  '~eich':{he:'אֵיךְ אֶפְשָׁר לַעֲזֹר?',tr:'эйх эфша́р лаазо́р?',ru:'чем могу помочь?'},
+  '~yesh_lach_chom':{he:'יֵשׁ לָךְ חֹם?',tr:'еш лах хом?',ru:'у тебя температура?',m:{he:'יֵשׁ לְךָ חֹם?',tr:'еш лехá хом?',ru:'у тебя температура?'}},
+  '~hine':{he:'הִנֵּה',tr:'hи́не',ru:'вот'},
+  '~eich_korim':{he:'אֵיךְ קוֹרְאִים לָךְ?',tr:'эйх корʼи́м лах?',ru:'как тебя зовут?',m:{he:'אֵיךְ קוֹרְאִים לְךָ?',tr:'эйх корʼи́м лехá?',ru:'как тебя зовут?'}},
+  '~meeifo':{he:'מֵאֵיפֹה אַתְּ?',tr:'меэ́йфо ат?',ru:'откуда ты?',m:{he:'מֵאֵיפֹה אַתָּה?',tr:'меэ́йфо ата́?',ru:'откуда ты?'}},
+  '~machberet':{he:'זֹאת מַחְבֶּרֶת',tr:'зот махбе́рет',ru:'это тетрадь'},
+  '~et':{he:'עֵט',tr:'эт',ru:'ручка'},
+  '~sababa':{he:'סַבָּבָה',tr:'саба́ба',ru:'отлично, окей'},
+  '~at_medaberet':{he:'אַתְּ מְדַבֶּרֶת עִבְרִית!',tr:'ат медабе́рет иври́т!',ru:'ты говоришь на иврите!',m:{he:'אַתָּה מְדַבֵּר עִבְרִית!',tr:'ата́ медабе́р иври́т!',ru:'ты говоришь на иврите!'}},
+  '~yesh_lach_tor':{he:'יֵשׁ לָךְ תּוֹר?',tr:'еш лах тор?',ru:'у тебя есть запись?',m:{he:'יֵשׁ לְךָ תּוֹר?',tr:'еш лехá тор?',ru:'у тебя есть запись?'}},
+  '~ani':{he:'אֲנִי',tr:'ани́',ru:'я'},
+  '~tmalei':{he:'תְּמַלְּאִי אֶת הַטֹּפֶס',tr:'тмалʼи́ эт hато́фес',ru:'заполни бланк',m:{he:'תְּמַלֵּא אֶת הַטֹּפֶס',tr:'тмале́ эт hато́фес',ru:'заполни бланк'}},
+  '~ad3':{he:'עַד שָׁלוֹשׁ',tr:'ад шало́ш',ru:'до трёх'},
+  '~shab':{he:'שַׁבָּת',tr:'шаба́т',ru:'шаббат, суббота'},
+  '~lemata':{he:'לְמַטָּה',tr:'лема́та',ru:'вниз, внизу'},
+  '~lehazmin':{he:'לְהַזְמִין אַמְבּוּלַנְס?',tr:'леhазми́н амбула́нс?',ru:'вызвать скорую?'},
+  '~lean_at':{he:'לְאָן אַתְּ צְרִיכָה?',tr:'леа́н ат црихá?',ru:'куда тебе нужно?',m:{he:'לְאָן אַתָּה צָרִיךְ?',tr:'леа́н ата́ цари́х?',ru:'куда тебе нужно?'}},
+  '~next':{he:'תַּחֲנָה הַבָּאָה',tr:'тахана́ hаба́а',ru:'следующая остановка'},
+  '~tikva':{he:'זֹאת «תִּקְוָה»',tr:'зот тиква́',ru:'это «надежда»'},
+};
+const NAMES = {
+  '@haifa':{he:'חֵיפָה',tr:'хе́йфа',ru:'Хайфа'},
+  '@telaviv':{he:'תֵּל אָבִיב',tr:'тель-ави́в',ru:'Тель-Авив'},
+  '@batgalim':{he:'בַּת גַּלִּים',tr:'бат галим',ru:'Бат-Галим'},
+  '@russia':{he:'רוּסְיָה',tr:'ру́сья',ru:'Россия'},
+  '@holland':{he:'הוֹלַנְד',tr:'hо́ланд',ru:'Голландия'},
+  '@avi':{he:'אָבִי',tr:'а́ви',ru:'Ави'},
+  '@maya':{he:'מָאיָה',tr:'ма́я',ru:'Мая'},
+};
+
+/* ===== Вывески: kind s, sg — вид таблички, s — как пишут на вывеске (без огласовок) ===== */
+Object.assign(ITEMS,{
+  yetsia:{he:'יְצִיאָה',tr:'ециа́',ru:'выход',day:1,kind:'s',sg:'exit'},
+  knisa:{he:'כְּנִיסָה',tr:'книса́',ru:'вход',day:1,kind:'s',sg:'info'},
+  monit:{he:'מוֹנִית',tr:'мони́т',ru:'такси',day:2,kind:'s',sg:'taxi'},
+  mivtsa:{he:'מִבְצָע',tr:'мивца́',ru:'акция, распродажа',day:3,kind:'s',sg:'shop'},
+  chalav:{he:'חָלָב',tr:'хала́в',ru:'молоко',day:3,kind:'s',sg:'label'},
+  kupa_s:{he:'קֻפָּה',tr:'купа́',ru:'касса',day:3,kind:'s',sg:'info',s:'קופה',note:'Без огласовок пишут с ו: קופה. Иначе получилось бы קפה — «кофе».'},
+  gvarim:{he:'גְּבָרִים',tr:'гвари́м',ru:'мужчины (мужской туалет)',day:4,kind:'s',sg:'info'},
+  nashim:{he:'נָשִׁים',tr:'наши́м',ru:'женщины (женский туалет)',day:4,kind:'s',sg:'info'},
+  ratsif:{he:'רָצִיף',tr:'раци́ф',ru:'платформа',day:4,kind:'s',sg:'info'},
+  ein_knisa:{he:'אֵין כְּנִיסָה',tr:'эйн книса́',ru:'вход запрещён',day:4,kind:'s',sg:'warn',note:'אֵין — «нет, отсутствует». Сравни: כְּנִיסָה — вход.'},
+  kasher:{he:'כָּשֵׁר',tr:'каше́р',ru:'кошерно',day:5,kind:'s',sg:'label'},
+  tafrit:{he:'תַּפְרִיט',tr:'тафри́т',ru:'меню',day:6,kind:'s',sg:'shop'},
+  chalavi:{he:'חַלָּבִי',tr:'халави́',ru:'молочное (кашрут)',day:6,kind:'s',sg:'label',note:'Сравни: חָלָב — молоко. В кошерных местах молочное и мясное (בְּשָׂרִי) не смешивают.'},
+  dchof:{he:'דְּחֹף',tr:'дхоф',ru:'от себя (толкать)',day:7,kind:'s',sg:'door',s:'דחוף'},
+  meshoch:{he:'מְשֹׁךְ',tr:'мешо́х',ru:'на себя (тянуть)',day:7,kind:'s',sg:'door',s:'משוך'},
+  maalit:{he:'מַעֲלִית',tr:'маали́т',ru:'лифт',day:7,kind:'s',sg:'info'},
+  na_lehamtin:{he:'נָא לְהַמְתִּין',tr:'на леhамти́н',ru:'пожалуйста, ожидайте',day:8,kind:'s',sg:'info'},
+  beit_mirkachat:{he:'בֵּית מִרְקַחַת',tr:'бейт мирка́хат',ru:'аптека',day:9,kind:'s',sg:'shop'},
+  miyun:{he:'חֲדַר מִיּוּן',tr:'хада́р мию́н',ru:'приёмный покой',day:9,kind:'s',sg:'info'},
+  kita:{he:'כִּתָּה',tr:'кита́',ru:'класс, аудитория',day:10,kind:'s',sg:'door',s:'כיתה'},
+  sheket:{he:'שֶׁקֶט',tr:'ше́кет',ru:'тишина!',day:10,kind:'s',sg:'warn'},
+  modiin:{he:'מוֹדִיעִין',tr:'модии́н',ru:'справочная',day:11,kind:'s',sg:'info'},
+  shaot:{he:'שְׁעוֹת פְּתִיחָה',tr:'шео́т птиха́',ru:'часы работы',day:12,kind:'s',sg:'shop',note:'Сравни: פָּתוּחַ — открыто.'},
+  zehirut:{he:'זְהִירוּת',tr:'зэиру́т',ru:'осторожно',day:13,kind:'s',sg:'warn'},
+  yetsiat_cherum:{he:'יְצִיאַת חֵרוּם',tr:'ециа́т херу́м',ru:'запасной выход',day:13,kind:'s',sg:'exit',s:'יציאת חירום',note:'Сравни: יְצִיאָה — выход. Перед другим словом окончание ־ָה превращается в ־ַת.'},
+  rachatsa:{he:'הָרַחְצָה אֲסוּרָה',tr:'hарахца́ асура́',ru:'купаться запрещено',day:14,kind:'s',sg:'warn'},
+  asur:{he:'אָסוּר לְעַשֵּׁן',tr:'асу́р леаше́н',ru:'курить запрещено',day:14,kind:'s',sg:'warn',note:'אָסוּר — «запрещено». Встретится на десятках табличек.'},
+});
+/* ===== Ругательства Пнины: собираются, когда ошибаешься ===== */
+const SCOLDS = {
+  oy:{he:'אוֹי וַאֲבוֹי!',tr:'ой ваавóй!',ru:'ой-вой, горе-то какое!'},
+  nu:{he:'נוּ בֶּאֱמֶת!',tr:'ну беэме́т!',ru:'ну правда же!'},
+  busha:{he:'בּוּשָׁה!',tr:'буша́!',ru:'позор!'},
+  chutzpa:{he:'אֵיזוֹ חֻצְפָּה!',tr:'э́йзо хуцпа́!',ru:'какая наглость!'},
+  shtuyot:{he:'שְׁטוּיוֹת!',tr:'штуйо́т!',ru:'глупости!'},
+  ein_matsav:{he:'אֵין מַצָּב!',tr:'эйн маца́в!',ru:'быть такого не может!'},
+  rtsini:{he:'אַתְּ רְצִינִית?!',tr:'ат рцини́т?!',ru:'ты серьёзно?!',m:{he:'אַתָּה רְצִינִי?!',tr:'ата́ рцини́?!'}},
+  titbayesh:{he:'תִּתְבַּיְּשִׁי!',tr:'титбайши́!',ru:'как не стыдно!',m:{he:'תִּתְבַּיֵּשׁ!',tr:'титбайе́ш!'}},
+  balagan:{he:'אֵיזֶה בַּלָּגָן!',tr:'э́йзе балага́н!',ru:'что за бардак!'},
+  uf:{he:'אוּף!',tr:'уф!',ru:'уф! (досада)'},
+  yofi:{he:'יוֹפִי!',tr:'йо́фи!',ru:'прекрасно! (часто с иронией)'},
+  ma_nihya:{he:'מָה נִהְיָה?!',tr:'ма ниhья́?!',ru:'что творится?!'},
+  lo_beseder:{he:'זֶה מַמָּשׁ לֹא בְּסֵדֶר',tr:'зе мама́ш ло бесе́дер',ru:'это совсем не дело'},
+  elohim:{he:'אֱלֹהִים יִשְׁמֹר!',tr:'элоhи́м ишмо́р!',ru:'Боже упаси!'},
+  yalla:{he:'יַאלְלָה, עוֹד פַּעַם!',tr:'я́лла, од па́ам!',ru:'давай, ещё раз!'},
+};
+/* как слово пишется без огласовок, если просто убрать точки нельзя */
+const FIX = {'בֹּקֶר':'בוקר','הַטֹּפֶס':'הטופס','טֹפֶס':'טופס','חֹם':'חום','לַעֲזֹר':'לעזור','סֻכָּר':'סוכר','קֻפַּת':'קופת','שְׁתַּיִם':'שתיים',
+  'תִּקְוָה':'תקווה','תַּחְתֹּם':'תחתום','לְאִבּוּד':'לאיבוד','חֻצְפָּה':'חוצפה','יִשְׁמֹר':'ישמור','קֻפָּה':'קופה','כִּתָּה':'כיתה','חֵרוּם':'חירום',
+  'דְּחֹף':'דחוף','מְשֹׁךְ':'משוך','תִּתְבַּיְּשִׁי':'תתביישי','תִּתְבַּיֵּשׁ':'תתבייש'};
+const ch=(prompt,...opts)=>({choice:{prompt,opts:opts.map(([t,ok,r])=>({t,ok,r}))}});
+
+/* ===== Сцены =====
+   {p:текст} — Пнина, {n:имя,t:текст} — собеседник, ch(подсказка, [вариант, верно?, реакция]...) — твой ход.
+   В тексте: [русское|ссылка|подстановка|подстановка по-русски]
+   Вариант ответа: ссылка|подстановка|подстановка-по-русски, несколько фраз подряд через + */
+const EPISODES = [
+ {n:1, title:'Аэропорт', items:['shalom','toda','bevakasha','slicha','ken','lo','yetsia','knisa'], steps:[
+  {p:'[Привет|shalom]! Я Пнина, учительница иврита. Да, черепаха. Пятьдесят лет учу людей — и за ошибки ругаюсь. На иврите, разумеется.'},
+  {p:'Сегодня шесть коротких слов. Их тут говорят по сто раз в день.'},
+  {sign:'yetsia', t:'Сначала — таблички. Зелёная над дверью: [выход|yetsia]. Такие висят везде.'},
+  {n:'Пограничница', t:'[Первый раз в стране?|~paam]'},
+  ch('Она спрашивает, первый ли раз ты в Израиле. Первый.',['ken',1,'Короткий ответ — лучший ответ на границе.'],['toda',0,'«[Спасибо|toda]» — за что? Она задала вопрос.']),
+  {n:'Пограничница', t:'[Добро пожаловать!|~bruchah]'},
+  ch('Тебе пожелали добро пожаловать.',['lo',0,'«[Нет|lo]»?! Она же тебе рада.'],['toda',1,'То, что нужно.']),
+  {p:'В зале прилёта толпа. Ты {задела|задел} кого-то чемоданом.'},
+
+  ch('Что скажешь?',['slicha',1,'[Извините|slicha] — а ещё так просят пропустить.'],['shalom',0,'Поздороваться мило, но ты его только что чемоданом.']),
+  {n:'Мужчина', t:'[Пожалуйста|bevakasha].'},
+  {p:'«[Пожалуйста|bevakasha]» здесь значит и «прошу», и «не за что», и «проходите».'},
+  {p:'[Да|ken], [нет|lo], [спасибо|toda], [пожалуйста|bevakasha], [извините|slicha]. С этим уже можно жить.'},
+  {sign:'knisa', t:'А это [вход|knisa] — пара к «выходу». Вывески пишут без огласовок, привыкай.'},
+ ]},
+
+ {n:2, title:'Такси', recapTitle:'Утро в хостеле', items:['lomevina','leat','odpaam','medaber','anglit','rusit','lomedet','monit'],
+ recap:[
+  {p:'Утро. Хостел. Пять минут на вчерашние слова.'},
+  {n:'Администратор', t:'[Доброе утро|~boker]!'},
+  ch('Поздоровайся.',['shalom',1,'Хорошее начало дня.'],['toda',0,'Благодарить пока не за что.']),
+  {n:'Администратор', t:'[Кофе?|~kafe]'},
+  ch('Кофе хочется.',['ken',1,'Ещё бы.'],['slicha',0,'Извиняться не за что — тебе предложили кофе.']),
+  {n:'Администратор', t:'[Пожалуйста|bevakasha].'},
+  ch('Тебе протянули чашку.',['toda',1,'Отлично.'],['ken',0,'«Да» тут не подходит: тебе что-то дали.']),
+  {p:'В коридоре узко, навстречу идёт человек с огромным рюкзаком.'},
+  ch('Попроси пропустить.',['slicha',1,'Он прижался к стене. {Прошла|Прошёл}.'],['lo',0,'«Нет» — это ты ему {отказала|отказал}. Он озадачен.']),
+ ],
+ steps:[
+  {p:'[Привет|shalom]! Берём такси до Хайфы.'},
+  {sign:'monit', t:'Ищи табличку [такси|monit] — там стоянка.'},
+  {n:'Таксист', t:'[Куда едем?|~lean]'},
+  {p:'Он сказал это очень быстро.'},
+  ch('Ты не {поняла|понял}. Скажи об этом.',['lomevina',1,'Честно и понятно. Здесь к этому привыкли.'],['ken',0,'«[Да|ken]» на непонятный вопрос — так можно уехать в Эйлат.']),
+  {n:'Таксист', t:'[Куда едем?|~lean]'},
+  ch('Опять быстро. Попроси его.',['leat',1,'Он повторил медленнее. Уже лучше.'],['odpaam',1,'Повторил. Тоже работает.']),
+  {p:'Можно проще: спроси, говорит ли он по-русски. В Израиле это часто срабатывает.'},
+  ch('Таксист — мужчина.',['medaber:medaberet|rusit',0,'Это форма для женщины. К мужчине нужна другая.'],['medaber|rusit',1,'Правильная форма — к мужчине.']),
+  {n:'Таксист', t:'[Немного|~ktsat]. Хайфа? [Да|ken]?'},
+  {p:'Если не русский, спроси про [английский|anglit]: [вы говорите по-английски?|medaber|anglit|по-английски]'},
+  ch('Скажи, что учишь иврит.',['lomevina',0,'Что не понимаешь, ты уже {сказала|сказал}. Теперь — что учишь.'],['lomedet',1,'Он сразу заулыбался.']),
+  {n:'Таксист', t:'[Молодец!|~kolhakavod]'},
+  ch('Тебя похвалили.',['toda',1,'Так язык и учится: по одной фразе за раз.'],['slicha',0,'Извиняться не за что — тебя похвалили.']),
+ ]},
+
+ {n:3, title:'Супермаркет', recapTitle:'Звонок с незнакомого номера', items:['kama','efshar','yeshlachem','zehu','shakit','mayim','ashrai','mivtsa','chalav','kupa_s'],
+ recap:[
+  {p:'Звонят с незнакомого номера. Говорят на иврите и очень быстро.'},
+  {n:'Голос в трубке', t:'[Здравствуйте, это из ульпана|~ulpan]…'},
+  ch('Ты {поняла|понял} только «шалом».',['lomevina',1,'Правильно: лучше признаться сразу.'],['ken',0,'«Да» — на что? Ты ведь ничего не {поняла|понял}.']),
+  {n:'Голос в трубке', t:'[Здравствуйте, это из ульпана|~ulpan]…'},
+  ch('Попроси ещё раз.',['odpaam',1,'Повторила. Ты {разобрала|разобрал} слово «ульпан».'],['leat',1,'Сказала медленнее. Ты {разобрала|разобрал} слово «ульпан».']),
+  ch('Голос женский. Спроси, говорит ли она по-английски.',['medaber|anglit',0,'Это к мужчине. На том конце — женщина.'],['medaber:medaberet|anglit',1,'И правильный род — молодец.']),
+  {n:'Голос в трубке', t:'[Немного|~ktsat].'},
+  {p:'Она объяснила по-английски: занятия начинаются в воскресенье. Неделя в Израиле начинается с воскресенья.'},
+  ch('Скажи, что уже учишь иврит.',['lomedet',1,'Она смеётся: «вот и отлично».'],['rusit',0,'Это просто «русский». {Хотела|Хотел} сказать, что учишь иврит.']),
+  ch('Попрощайся с благодарностью.',['toda',1,'Положила трубку. Первый разговор по телефону на иврите!'],['slicha',0,'Извиняться не за что.']),
+ ],
+ steps:[
+  {p:'[Привет|shalom]! Супермаркет. Всё на иврите, даже хлеб.'},
+  {sign:'mivtsa', t:'Жёлтые ценники с этим словом — [акция|mivtsa]. Ищи их.'},
+  {sign:'chalav', t:'На пакете крупно: [молоко|chalav].'},
+  {p:'[Воды|mayim] на полке нет. Рядом сотрудник.'},
+  ch('Спроси, есть ли у них вода.',['efshar|mayim',0,'Так просят дать. А сначала надо узнать, есть ли она вообще.'],['yeshlachem|mayim',1,'Он кивает в конец зала.']),
+  {n:'Сотрудник', t:'[Да|ken], там.'},
+  {p:'Сыр без ценника.'},
+  ch('Узнай цену.',['kama',1,'[Боже упаси|!elohim], какие цены. Привыкай.'],['zehu',0,'«Это всё» говорят на кассе, когда заканчиваешь покупки.']),
+  {n:'Сотрудник', t:'[Двадцать шекелей|~esrim].'},
+  {sign:'kupa_s', t:'Над кассой табличка — [касса|kupa_s].'},
+  {n:'Кассирша', t:'[Пакет|shakit]?'},
+
+  ch('Пакет нужен?',['ken',1,'Пакеты тут платные, но стоят копейки.'],['lo',1,'Правильно, рюкзак же есть.']),
+  {n:'Кассирша', t:'[Что-нибудь ещё?|~odmashehu]'},
+  ch('Больше ничего не нужно.',['odpaam',0,'Это «ещё раз», то есть «повторите». А она спрашивает, купишь ли что-то ещё.'],['zehu',1,'Коротко и вежливо.']),
+  {n:'Кассирша', t:'[Картой?|ashrai]'},
+  ch('Платишь картой.',['ken',1,'Готово.'],['lo',0,'Ты же {хотела|хотел} картой.']),
+  {p:'Запомни рамку: [можно воду, пожалуйста?|efshar|mayim|воду] Подставляй туда что угодно.'},
+ ]},
+
+ {n:4, title:'Автостанция', recapTitle:'Маколет у дома', items:['eifo','sherutim','tachana','nosea','ravkav','gvarim','nashim','ratsif','ein_knisa'],
+ recap:[
+  {p:'Маленький магазинчик у дома — по-израильски «маколет».'},
+  ch('Нужна вода. Попроси.',['efshar|mayim',1,'Он достаёт бутылку из холодильника.'],['kama',0,'Цену узнаешь потом. Сначала попроси воду.']),
+  {n:'Продавец', t:'[Что-нибудь ещё?|~odmashehu]'},
+  ch('Больше ничего.',['zehu',1,'Коротко и ясно.'],['ken',0,'«Да» — значит, что-то ещё. Он ждёт.']),
+  {n:'Продавец', t:'[Десять шекелей|~eser]. [Пакет?|shakit]'},
+  ch('Пакет не нужен.',['lo',1,'Бутылку и так донесёшь.'],['ashrai',0,'Он спросил про пакет, а не про оплату.']),
+  ch('Скажи, что заплатишь картой.',['ashrai',1,'Он разворачивает терминал.'],['shakit',0,'Это «пакет». А ты хочешь платить картой.']),
+  ch('Уходишь.',['toda',1,'Он машет: «[пока|shalom]!»'],['bevakasha',0,'«Пожалуйста» тут говорит он в ответ на твоё «спасибо».']),
+ ],
+ steps:[
+  {p:'[Привет|shalom]! Центральная автостанция: огромная и запутанная.'},
+  ch('Сначала — туалет. Спроси, где он.',['eifo|sherutim:hasherutim',1,'Самая полезная фраза на любом вокзале.'],['yeshlachem|sherutim',0,'«У вас есть туалет?» — поймут, но удивятся. Спроси «где».']),
+  {n:'Охранник', t:'[Прямо и налево|~yashar].'},
+  {sign:'gvarim', t:'Две двери. На одной — [мужчины|gvarim]…'},
+  {sign:'nashim', t:'…на другой — [женщины|nashim].'},
+  {p:'Теперь нужна [остановка|tachana] автобуса.'},
+  ch('Спроси, где остановка.',['kama',0,'Это «сколько стоит». А ты ищешь, куда идти.'],['eifo|tachana:hatachana',1,'Показывает вниз по лестнице.']),
+  {sign:'ein_knisa', t:'Короткий путь перегорожен: [вход запрещён|ein_knisa].'},
+  {sign:'ratsif', t:'Автобусы стоят по [платформам|ratsif]. Твоя — седьмая.'},
+  {p:'Подходит автобус.'},
+
+  ch('Проверь у водителя, едет ли он в Хайфу.',['eifo|@haifa',0,'Так ты спросишь, где вообще находится Хайфа. Водитель удивится.'],['nosea|@haifa',1,'Кивает.']),
+  {n:'Водитель', t:'[Да|ken]. [Рав-Кав|ravkav]?'},
+  {p:'[Рав-Кав|ravkav] — проездная карта. Наличными в автобусах почти нигде не платят, так что карту или приложение лучше завести в первые же дни.'},
+  ch('Карта у тебя есть.',['lo',0,'Есть же! Вон она, в кармане.'],['ken',1,'{Приложила|Приложил} — едем.']),
+  {p:'[Спасибо|toda], Хайфа! Завтра — числа и деньги.'},
+ ]},
+
+ {n:5, title:'Рынок', recapTitle:'Поезд в Тель-Авив', items:['achat','shtayim','shalosh','chamesh','eser','esrim','shekel','yakar','kasher'],
+ recap:[
+  {p:'Едем в Тель-Авив на поезде.'},
+  ch('Спроси, где станция.',['eifo|tachana:hatachana',1,'Прохожий машет рукой.'],['kama',0,'Это «сколько стоит». А тебе нужно найти станцию.']),
+  {n:'Прохожий', t:'[Прямо и налево|~yashar].'},
+  ch('Поблагодари.',['toda',1,'Он уже убежал, но услышал.'],['slicha',0,'Извиняться не за что.']),
+  {p:'На платформе два поезда.'},
+  ch('Спроси у женщины рядом, этот ли едет в Тель-Авив.',['eifo|@telaviv',0,'Так ты спросишь, где находится Тель-Авив. Она решит, что ты {заблудилась|заблудился} всерьёз.'],['nosea|@telaviv',1,'Она кивает.']),
+  {n:'Контролёр', t:'[Рав-Кав?|ravkav]'},
+  ch('Карта при тебе.',['ken',1,'{Приложила|Приложил} к турникету.'],['lo',0,'Да вот же она, в руке.']),
+  ch('В вагоне {вспомнила|вспомнил} про туалет. Спроси.',['eifo|sherutim:hasherutim',1,'В конце вагона. Поезда тут удобные.'],['yeshlachem|mayim',0,'Это «у вас есть вода?». А тебе туалет.']),
+ ],
+ steps:[
+  {p:'[Привет|shalom]! Рынок. Тут кричат цены — успевай считать.'},
+  {sign:'kasher', t:'На прилавке табличка [кошерно|kasher]. Ты её будешь видеть везде.'},
+  {n:'Продавец', t:'[Три|shalosh] [за десять|eser:beeser]!'},
+  {p:'Три пучка зелени за [десять|eser] [шекелей|shekel]. Нормальная цена.'},
+  ch('Тебе нужно два. Скажи продавцу.',['shtayim',1,'Он берёт два пучка.'],['shalosh',0,'Это «три». А тебе нужно два.']),
+  {n:'Продавец', t:'[Два|shtayim]? [Пять|chamesh] [шекелей|shekel].'},
+  ch('Переспроси, правильно ли {расслышала|расслышал}: пять?',['chamesh',1,'Он кивает.'],['eser',0,'Это «десять». Он сказал меньше.']),
+  {p:'На соседнем прилавке сыр — [двадцать|esrim] [шекелей|shekel].'},
+  ch('Слишком дорого. Скажи об этом.',['yakar',1,'Продавец вздыхает так, будто ты {разбила|разбил} ему сердце. [Какая наглость!|!chutzpa]'],['kama',0,'Цену ты уже знаешь. Теперь торгуйся.']),
+  {n:'Продавец', t:'[Ладно, пятнадцать|~besederTV].'},
+  ch('Пятнадцать — нормально. Бери одну головку.',['achat',1,'Он заворачивает сыр.'],['esrim',0,'Двадцать — это была его первая цена. Теперь ты просто покупаешь одну.']),
+  {p:'Торговаться на рынке — нормально. В супермаркете — нет.'},
+ ]},
+
+ {n:6, title:'Кафе', recapTitle:'Пекарня', items:['rotza','kafe','hafuch','bli','sukar','cheshbon','po','tafrit','chalavi'],
+ recap:[
+  {n:'Пекарь', t:'[Привет|shalom]!'},
+  ch('Тебе нужны три булочки. Скажи сколько.',['shalosh',1,'Он складывает их в бумажный пакет.'],['chamesh',0,'Это «пять». Столько не съешь.']),
+  {n:'Пекарь', t:'[Десять|eser].'},
+  ch('Переспроси цену: десять?',['eser',1,'Он кивает.'],['esrim',0,'Это «двадцать» — так ты {сама|сам} поднимешь цену.']),
+  {p:'Рядом пирог, тоже за [двадцать|esrim].'},
+  ch('Дороговато.',['yakar',1,'Пекарь смеётся.'],['zehu',0,'«Это всё» — ты же ещё ничего не {решила|решил}.']),
+  {n:'Пекарь', t:'[Ладно, пятнадцать|~besederTV].'},
+  ch('Берёшь один пирог.',['achat',1,'Отлично.'],['shtayim',0,'Это «два». Тебе нужен один.']),
+  ch('Больше ничего не нужно.',['zehu',1,'Завтрак на неделю готов.'],['odpaam',0,'Это «ещё раз».']),
+ ],
+ steps:[
+  {p:'[Привет|shalom]! Кафе. [Кофе|kafe] тут пьют литрами.'},
+  {p:'Кофе с молоком тут называют [«афух»|hafuch] — «перевёрнутый».'},
+  {sign:'tafrit', t:'На стене — [меню|tafrit].'},
+  {sign:'chalavi', t:'В углу значок [молочное|chalavi]: в кошерном кафе мясо и молоко не смешивают.'},
+  {n:'Официант', t:'[Привет|shalom]! [Что будешь?|~bishvilech]'},
+  ch('Закажи «афух».',['rotza|hafuch',1,'Прямо и понятно. Тут так и заказывают.'],['efshar|hafuch',1,'Вежливо и понятно.'],['bli|hafuch',0,'Это «без афуха». [Глупости!|!shtuyot]']),
+  {n:'Официант', t:'[Здесь или с собой?|~po_o]'},
+  ch('Сядешь здесь.',['po',1,'Он показывает на столик у окна.'],['lo',0,'«Нет» — что «нет»? Он спросил: здесь или с собой.']),
+  {n:'Официант', t:'[Сахар?|sukar]'},
+  ch('Без сахара.',['bli|sukar',1,'Правильно.'],['rotza|sukar',0,'Это «я хочу сахар». А ты не хочешь.']),
+  {p:'[Без|bli] — очень полезное слово: [без сахара|bli|sukar|сахара], без лука, без молока.'},
+  {p:'Пора платить.'},
+  ch('Попроси счёт.',['efshar|cheshbon:et_hacheshbon',1,'Он кивает и уходит за терминалом.'],['yeshlachem|cheshbon',0,'«У вас есть счёт?» — звучит странно. Попроси его.']),
+  {n:'Официант', t:'[Картой?|ashrai]'},
+  ch('Да, картой.',['ken',1,'Готово. Чаевые тут обычно оставляют.'],['lo',0,'Наличных у тебя нет.']),
+ ]},
+
+ {n:7, title:'Квартира', recapTitle:'Кафе с {подругой|другом}', items:['lo_oved','mazgan','dud','bayaa','matay','hadasha','dchof','meshoch','maalit'],
+ recap:[
+  {n:'Официантка', t:'[Что будешь?|~bishvilech]'},
+  ch('Закажи кофе.',['rotza|kafe',1,'Она записывает.'],['bli|kafe',0,'Это «без кофе». Что же тогда?']),
+  {n:'Официантка', t:'[Сахар?|sukar]'},
+  ch('С сахаром, да.',['ken',1,'Принесёт.'],['bli|sukar',0,'Ты же хочешь сахар!']),
+  {n:'Официантка', t:'[Здесь или с собой?|~po_o]'},
+  ch('Здесь.',['po',1,'Садитесь у окна.'],['eifo|sherutim:hasherutim',0,'Туалет потом. Она спросила, где будешь пить.']),
+  {p:'{Подруга|Друг} не говорит на иврите и шепчет: как будет «счёт»?'},
+  ch('Подскажи {ей|ему} слово.',['cheshbon',1,'{Она записывает|Он записывает} в телефон.'],['sukar',0,'Это «сахар».']),
+  ch('Попроси счёт.',['efshar|cheshbon:et_hacheshbon',1,'Официантка улыбается.'],['rotza|cheshbon',0,'«Я хочу счёт» поймут, но звучит резковато. Попроси вежливо.']),
+ ],
+ steps:[
+  {p:'Новая квартира! Жарко, а [кондиционер|mazgan] молчит.'},
+  {sign:'dchof', t:'На двери подъезда снаружи: [от себя|dchof]…'},
+  {sign:'meshoch', t:'…изнутри — [на себя|meshoch].'},
+  {sign:'maalit', t:'[Лифт|maalit] — направо.'},
+  {n:'Соседка', t:'[Привет|shalom]! [Ты тут {новенькая|новенький}?|~at_chadasha]'},
+  ch('Ответь, что да, ты тут {новенькая|новенький}.',['hadasha',1,'Она сразу предлагает помочь.'],['lomedet',0,'Это «я учу иврит». Правда, но она спросила другое.']),
+  {n:'Соседка', t:'[Добро пожаловать!|~bruchah]'},
+  ch('Ответь.',['toda',1,'Знакомство состоялось.'],['slicha',0,'Извиняться не за что.']),
+  {p:'Пиши хозяину квартиры. В Израиле всё решается через WhatsApp.'},
+  ch('Напиши, что кондиционер не работает.',['lo_oved|mazgan:hamazgan',1,'Отправлено.'],['eifo|mazgan:hamazgan',0,'«Где кондиционер?» — он на стене. [Ну правда!|!nu] Он не работает.']),
+  {n:'Хозяин', t:'[Хорошо|~beseder].'},
+  ch('Спроси, когда он придёт.',['matay',1,'Одно слово — и всё понятно.'],['kama',0,'Это «сколько стоит». Ремонт — его забота.']),
+  {n:'Хозяин', t:'[В десять|eser:beeser].'},
+  {p:'Утром [бойлер|dud]: горячей воды нет. В Израиле бойлер часто надо включать заранее.'},
+  ch('Напиши хозяину ещё раз.',['bayaa|dud:hadud',1,'Отправлено.'],['lo_oved|dud:hadud',1,'Отправлено. Обе фразы подходят.'],['hadasha',0,'Это «я тут {новенькая|новенький}». Он и так знает.']),
+  {p:'Кондиционер, бойлер, «когда» — с квартирой ты теперь справишься.'},
+ ]},
+
+ {n:8, title:'Сим-карта и банк', recapTitle:'Сосед стучит в дверь', items:['tsricha','simcard','darkon','mispar','rega','cheshbonbank','na_lehamtin'],
+ recap:[
+  {n:'Сосед', t:'[Привет|shalom]! [Ты тут {новенькая|новенький}?|~at_chadasha]'},
+  ch('Ответь.',['hadasha',1,'Он представляется: живёт этажом выше.'],['lomevina',0,'Ты его {поняла|понял}! Ответь по делу.']),
+  {n:'Сосед', t:'[Кондиционер работает?|~mazgan_oved]'},
+  ch('Опять сломался.',['lo_oved|mazgan:hamazgan',1,'Он сочувственно качает головой.'],['kama',0,'Цена тут ни при чём.']),
+  {n:'Сосед', t:'[Позвони хозяину квартиры|~titkashri].'},
+  ch('Спроси, когда тот обычно приходит.',['matay',1,'Сосед пожимает плечами: «[завтра|~machar]».'],['eifo|tachana:hatachana',0,'Это «где остановка».']),
+  ch('А ещё проблема с бойлером. Скажи соседу.',['bayaa|dud:hadud',1,'«А, кнопка в коридоре!» — показывает он.'],['zehu',0,'«Это всё»? Но проблема-то есть.']),
+  ch('Поблагодари.',['toda',1,'Соседи — лучшая служба поддержки.'],['bevakasha',0,'«Пожалуйста» скажет он.']),
+ ],
+ steps:[
+  {p:'Без израильского [номера|mispar] тут никак: банк, врач, ульпан — везде попросят.'},
+  ch('В магазине связи. Скажи, что тебе нужна сим-карта.',['tsricha|simcard',1,'Продавец кивает.'],['yeshlachem|simcard',1,'Конечно есть. Продавец кивает.'],['efshar|cheshbon:et_hacheshbon',0,'Это «можно счёт». Ты ещё ничего не {купила|купил}.']),
+  {n:'Продавец', t:'[Паспорт?|darkon]'},
+  ch('Ищешь паспорт в сумке. Попроси подождать.',['rega',1,'{Нашла|Нашёл}.'],['lo',0,'«Нет»? Паспорт же есть, просто надо найти.']),
+  {n:'Продавец', t:'[Подпиши здесь|~tachtemi].'},
+  {p:'Вот и твой [номер телефона|mispar:mispar_tel].'},
+  {p:'Теперь банк.'},
+  {sign:'na_lehamtin', t:'На экране с номерками: [пожалуйста, ожидайте|na_lehamtin].'},
+  ch('Скажи, что тебе нужен банковский счёт.',['tsricha|cheshbonbank',1,'Тебе дают талончик.'],['rotza|cheshbon',0,'«Я хочу счёт» — так просят счёт в кафе.']),
+  {n:'Служащая', t:'[Номер телефона?|mispar:mispar_tel]'},
+  ch('Номер у тебя уже есть.',['ken',1,'Диктуешь цифры по-английски — так тоже можно.'],['lomevina',0,'Ты всё {поняла|понял}!']),
+  {n:'Служащая', t:'[Минутку|rega]…'},
+  {p:'«[Минутку|rega]» тут говорят все и постоянно. Иногда эта минутка длится час. [Что за бардак!|!balagan]'},
+ ]},
+
+ {n:9, title:'Аптека', recapTitle:'Курьер с посылкой', items:['koev','rosh','beten','gaaron','chom','trufa','kupa','beit_mirkachat','miyun'],
+ recap:[
+  {n:'Курьер', t:'[Номер телефона?|mispar:mispar_tel]'},
+  ch('Ищешь в телефоне. Попроси подождать.',['rega',1,'Он терпеливо ждёт.'],['lo',0,'Номер же есть, просто надо найти.']),
+  {n:'Курьер', t:'[Паспорт?|darkon]'},
+  ch('Паспорт при тебе.',['ken',1,'Он сверяет имя.'],['lomevina',0,'Ты {поняла|понял}! Ответь.']),
+  ch('Спроси, сколько стоит доставка.',['kama',1,'Ничего, уже оплачено.'],['rega',0,'Ждать уже нечего. Спроси цену.']),
+  {p:'Вечером банк присылает SMS — на старый номер. Идёшь в магазин связи.'},
+  ch('Объясни, что тебе нужна новая сим-карта.',['tsricha|simcard',1,'Готово за пять минут.'],['yeshlachem|simcard',1,'Есть. Готово за пять минут.'],['zehu',0,'«Это всё» — а ты ещё ничего не {попросила|попросил}.']),
+ ],
+ steps:[
+  {p:'{Простыла|Простыл} под кондиционером.'},
+  {sign:'beit_mirkachat', t:'Вывеска: [аптека|beit_mirkachat].'},
+  {n:'Фармацевт', t:'[Привет|shalom]. [Чем могу помочь?|~eich]'},
+  ch('Болит горло.',['koev|gaaron:hagaron',1,'Она понимающе кивает.'],['koev|rosh:harosh',0,'Это голова. А болит горло.']),
+  {n:'Фармацевт', t:'[У тебя температура?|~yesh_lach_chom]'},
+  ch('Есть.',['chom',1,'Она достаёт с полки коробочку.'],['lo',0,'Ты же горишь.']),
+  {n:'Фармацевт', t:'[Вот|~hine] [лекарство|trufa].'},
+  ch('Спроси цену.',['kama',1,'Двадцать шекелей.'],['odpaam',0,'Она ничего не говорила — нечего повторять.']),
+  {p:'Если станет хуже — в [больничную кассу|kupa]. К ней привязана вся медицина.'},
+  {sign:'miyun', t:'А если совсем плохо — в больницу, ищи [приёмный покой|miyun].'},
+  ch('Записываешься к врачу по телефону. Голова тоже болит.',['koev|rosh:harosh',1,'Записали на завтра.'],['koev:koevet|rosh:harosh',0,'רֹאשׁ — мужского рода, так что כּוֹאֵב, без ־ֶת.']),
+  {p:'А вот живот — женского рода: [болит живот|koev:koevet|beten:habeten|живот]. Глагол меняется вместе с ним.'},
+ ]},
+
+ {n:10, title:'Ульпан', recapTitle:'Звонок в больничную кассу', items:['korim','ani_me','naim','eich_omrim','ma_ze','kita','sheket'],
+ recap:[
+  {p:'Звонишь в [больничную кассу|kupa].'},
+  {n:'Оператор', t:'[Минутку|rega]…'},
+  {p:'Двадцать минут музыки.'},
+  {n:'Оператор', t:'[Чем могу помочь?|~eich]'},
+  ch('Болит живот.',['koev:koevet|beten:habeten',1,'Правильная форма — живот женского рода.'],['koev|beten:habeten',0,'בֶּטֶן — женского рода, глагол тоже: כּוֹאֶבֶת.']),
+  {n:'Оператор', t:'[У тебя температура?|~yesh_lach_chom]'},
+  ch('Есть, небольшая.',['chom',1,'Записывает.'],['lo_oved|mazgan:hamazgan',0,'Кондиционер — это другая проблема.']),
+  ch('Она тараторит. Попроси помедленнее.',['leat',1,'Стало понятнее.'],['zehu',0,'Ещё ничего не закончилось.']),
+  {p:'Врач выписал [лекарство|trufa].'},
+  ch('В аптеке спроси, есть ли оно.',['yeshlachem|trufa',1,'Есть.'],['eifo|trufa',0,'Можно и так, но лучше спросить, есть ли оно вообще.']),
+ ],
+ steps:[
+  {p:'Первый день в ульпане. Двадцать человек, и все волнуются.'},
+  {sign:'kita', t:'На двери — [класс|kita] и номер.'},
+  {sign:'sheket', t:'Рядом табличка: [тишина|sheket]! Ну-ну.'},
+  {n:'Учительница', t:'[Привет|shalom]! [Как тебя зовут?|~eich_korim]'},
+  ch('Представься.',['korim|@me',1,'Она пишет твоё имя на доске.'],['ani_me|@me',0,'Получилось «я из» плюс твоё имя. Звучит как название города.']),
+  {n:'Учительница', t:'[Откуда ты?|~meeifo]'},
+  ch('Скажи, откуда ты.',['ani_me|@russia',1,'В ульпане много русскоязычных — ты не {одна|один}.'],['ani_me|@holland',1,'Из Голландии? Тут сразу спросят про велосипеды.']),
+  {n:'Сосед по парте', t:'[Меня зовут Ави|korim|@avi|Ави].'},
+  ch('Ответь.',['naim',1,'Он улыбается.'],['toda',0,'Можно и так, но после знакомства говорят «очень приятно».']),
+  {p:'На доске слово, которого ты не знаешь.'},
+  ch('Спроси, что это.',['ma_ze',1,'Учительница показывает на тетрадь.'],['kama',0,'Это «сколько стоит». Слова бесплатные.']),
+  {n:'Учительница', t:'[Это тетрадь|~machberet].'},
+  ch('А как будет «ручка»? Спроси.',['eich_omrim||ручка',1,'Учительница отвечает: «[ручка|~et]».'],['lomevina',0,'Ты всё {поняла|понял}. Теперь спроси новое слово.']),
+  {p:'[Как сказать … на иврите?|eich_omrim] — главная фраза ульпана. С ней можно выучить весь язык.'},
+ ]},
+
+ {n:11, title:'Министерство', recapTitle:'Вечеринка у соседей', items:['tor','mi_acharon','tofes','mismachim','lo_yodaat','modiin'],
+ recap:[
+  {n:'Девушка', t:'[Привет|shalom]! [Как тебя зовут?|~eich_korim]'},
+  ch('Представься.',['korim|@me',1,'Она повторяет твоё имя.'],['naim',0,'«Очень приятно» — это после того, как познакомились.']),
+  {n:'Девушка', t:'[Меня зовут Мая|korim|@maya|Мая].'},
+  ch('Ответь.',['naim',1,'Знакомство состоялось.'],['zehu',0,'«Это всё»? Разговор же только начался.']),
+  {n:'Мая', t:'[Откуда ты?|~meeifo]'},
+  ch('Скажи, откуда ты.',['ani_me|@russia',1,'Оказывается, её бабушка из Харькова.'],['ani_me|@holland',1,'Она была в Амстердаме!']),
+  {n:'Мая', t:'[Ты говоришь на иврите!|~at_medaberet]'},
+  ch('Скажи, что пока только учишь.',['lomedet',1,'«[Молодец|~kolhakavod]!»'],['lo',0,'Просто «нет» — скромно. Лучше скажи, что учишь.']),
+  {n:'Мая', t:'[Отлично!|~sababa]'},
+  ch('Спроси, что это за слово.',['ma_ze',1,'«Сабаба» — значит «всё отлично». Одно из самых частых слов в стране.'],['odpaam',1,'Она повторяет: сабаба — «всё отлично».']),
+ ],
+ steps:[
+  {p:'Министерство внутренних дел. Без [записи|tor] сюда лучше не приходить.'},
+  {sign:'modiin', t:'У входа окошко [справочная|modiin].'},
+  {n:'Охранник', t:'[У тебя есть запись?|~yesh_lach_tor]'},
+  ch('Запись есть.',['ken',1,'Пропускает.'],['lo',0,'Без записи не пустят. Но она у тебя есть!']),
+  {p:'В зале живая очередь.'},
+  ch('Спроси, кто последний.',['mi_acharon',1,'Тебе машет женщина с папкой.'],['eifo|sherutim:hasherutim',0,'Туалет потом.']),
+  {n:'Женщина', t:'[Я|~ani].'},
+  {p:'[Бланк|tofes] — главная бумага бюрократии.'},
+  {n:'Служащая', t:'[Заполни бланк|~tmalei].'},
+  ch('Бланк на иврите. Попроси по-английски.',['efshar|anglit:beanglit',1,'Она достаёт английскую версию.'],['medaber:medaberet|anglit',1,'Говорит! И род правильный — она женщина.'],['medaber|anglit',0,'Это форма к мужчине. Служащая — женщина.']),
+  {n:'Служащая', t:'[Документы?|mismachim]'},
+  ch('Каких документов она ждёт, ты не знаешь.',['lo_yodaat',1,'Она перечисляет. Хорошо, что {спросила|спросил}.'],['lomevina',1,'Тоже честно. Она объясняет медленнее.'],['zehu',0,'«Это всё» — смело, но документы всё же нужны.']),
+  {p:'Бюрократия здесь медленная. [Минутку|rega] может длиться неделю. [Уф!|!uf]'},
+ ]},
+
+ {n:12, title:'Пятница', recapTitle:'Почта и очередь', items:['ma_hashaa','patuach','sagur','shabbat','machar','hayom','ad_matay','shaot'],
+ recap:[
+  {p:'Почта. Очередь.'},
+  ch('Спроси, кто последний.',['mi_acharon',1,'Мужчина поднимает руку.'],['ma_ze',0,'«Что это?» — это очередь.']),
+  {n:'Мужчина', t:'[Я|~ani].'},
+  {n:'Служащая', t:'[У тебя есть запись?|~yesh_lach_tor]'},
+  ch('Записи нет.',['lo',1,'Ничего, на почте можно и так.'],['ken',0,'Врать нехорошо. Записи же нет.']),
+  {n:'Служащая', t:'[Заполни бланк|~tmalei].'},
+  ch('Что писать в одной графе, ты не знаешь.',['lo_yodaat',1,'Она показывает пальцем.'],['zehu',0,'Бланк ещё не заполнен.']),
+  {n:'Служащая', t:'[Документы?|mismachim]'},
+  ch('Ищешь их в сумке.',['rega',1,'{Нашла|Нашёл}.'],['lo',0,'Они же у тебя есть.']),
+ ],
+ steps:[
+  {p:'Пятница. После обеда город начинает закрываться: в шаббат не ходит большинство автобусов и закрыты многие магазины. В Хайфе часть линий работает, но не все.'},
+  ch('Телефон сел. Спроси прохожего, который час.',['ma_hashaa',1,'Он смотрит на часы.'],['matay',0,'«Когда?» — а нужно «который час».']),
+  {n:'Прохожий', t:'[Два|shtayim].'},
+  {p:'Магазин у дома.'},
+  {sign:'shaot', t:'На двери [часы работы|shaot]. В пятницу — короткий день.'},
+  ch('Спроси, до скольки открыто.',['ad_matay',1,'Успеваешь.'],['kama',0,'Это «сколько стоит».']),
+  {n:'Продавец', t:'[Сегодня|hayom] [до трёх|~ad3].'},
+  ch('Спроси, а завтра открыто?',['machar+patuach',1,'Он качает головой.'],['hayom+sagur',0,'Это «сегодня закрыто». Ты же спрашиваешь про завтра.']),
+  {n:'Продавец', t:'[Завтра|machar] — [шаббат|~shab]. [Закрыто|sagur].'},
+  {p:'Значит, сегодня надо купить всё на два дня. [Ой-вой!|!oy]'},
+  {n:'Продавец', t:'[Шаббат шалом|shabbat]!'},
+  ch('Ответь.',['shabbat',1,'Так прощаются в пятницу — все, верующие и нет.'],['lo',0,'«Нет»? Тебе пожелали хорошей субботы.']),
+ ]},
+
+ {n:13, title:'На всякий случай', recapTitle:'Ужин у соседки', items:['hatsilu','titkasheru','ambulans','mishtara','lo_margisha','lealbud','miklat','zehirut','yetsiat_cherum'],
+ recap:[
+  {p:'Соседка позвала на ужин в пятницу.'},
+  {n:'Соседка', t:'[Шаббат шалом|shabbat]!'},
+  ch('Ответь.',['shabbat',1,'Тебя усаживают за стол.'],['shalom',1,'Можно и так. Тебя усаживают за стол.'],['zehu',0,'«Это всё» — ты же только {пришла|пришёл}.']),
+  ch('Хочешь понять, долго ли до ужина. Спроси время.',['ma_hashaa',1,'Ещё полчаса.'],['matay',1,'«Когда?» — тоже понятно. Ещё полчаса.']),
+  {p:'Завтра нужен хлеб.'},
+  ch('Спроси, открыто ли завтра.',['machar+patuach',1,'Соседка смеётся.'],['hayom+patuach',0,'Это «сегодня открыто?». Тебе про завтра.']),
+  {n:'Соседка', t:'[Завтра|machar]? [Шаббат|~shab]! [Закрыто|sagur].'},
+  ch('А сегодня ещё открыто?',['hayom+patuach',1,'Уже нет.'],['machar+sagur',0,'Это «завтра закрыто». Это ты уже знаешь.']),
+  {n:'Соседка', t:'Уже [закрыто|sagur]. Возьмёшь нашу халу.'},
+  ch('Поблагодари.',['toda',1,'Шаббат учит планировать — и дружить с соседями.'],['slicha',0,'Не за что извиняться.']),
+ ],
+ steps:[
+  {p:'Эта сцена — на всякий случай. Пусть никогда не пригодится.'},
+  {sign:'zehirut', t:'Жёлтая табличка: [осторожно|zehirut].'},
+  {sign:'yetsiat_cherum', t:'Зелёная: [запасной выход|yetsiat_cherum]. Запоминай, где они.'},
+  {p:'На улице мужчине стало плохо.'},
+  ch('Позови людей.',['hatsilu',1,'Люди оборачиваются и бегут к вам.'],['slicha',0,'Слишком тихо для такой ситуации.']),
+  ch('Попроси вызвать скорую.',['titkasheru|ambulans:leambulans',1,'Кто-то уже звонит.'],['titkasheru|mishtara:lamishtara',0,'Это полиция. Нужна скорая.']),
+  {p:'[Скорая|ambulans] — 101, [полиция|mishtara] — 100, пожарные — 102. Сохрани номера в телефон прямо сейчас.'},
+  {p:'От жары тебе {самой|самому} стало нехорошо.'},
+  ch('Скажи прохожей.',['lo_margisha',1,'Она усаживает тебя в тень и даёт воды.'],['lomevina',0,'Это «не понимаю». А тебе плохо.']),
+  {p:'Другая ситуация: незнакомый район, телефон сел.'},
+  ch('Скажи прохожей, что {потерялась|потерялся}.',['lealbud',1,'Она останавливается.'],['lo_yodaat',0,'«Не знаю» — а что? Скажи, что {потерялась|потерялся}.']),
+  {n:'Прохожая', t:'[Куда тебе нужно?|~lean_at]'},
+  ch('Тебе нужна остановка.',['eifo|tachana:hatachana',1,'Она провожает тебя.'],['eifo|sherutim:hasherutim',0,'Это туалет. Тебе нужна остановка.']),
+  {p:'И последнее. При сирене нужно в укрытие. Узнай заранее, где ближайшее.'},
+  ch('Спроси соседку, где убежище.',['eifo|miklat:hamiklat',1,'В подвале, вход со двора. Теперь ты знаешь.'],['yeshlachem|miklat',0,'«У вас есть убежище?» — лучше сразу спросить, где оно.']),
+  {p:'Поставь приложение Службы тыла — оно предупреждает о тревоге и подсказывает, что делать.'},
+ ]},
+
+ {n:14, title:'Свой день', recapTitle:'Учебная тревога', items:['rachatsa','asur'],
+ recap:[
+  {p:'Учебная тревога в доме. Просто тренировка.'},
+  ch('Спроси соседа, где убежище.',['eifo|miklat:hamiklat',1,'Он показывает рукой.'],['ma_hashaa',0,'Время тут не важно.']),
+  {n:'Сосед', t:'[Внизу|~lemata].'},
+  {p:'В подвале душно.'},
+  ch('Тебе нехорошо. Скажи соседу.',['lo_margisha',1,'Он открывает дверь пошире.'],['lealbud',0,'Ты не {потерялась|потерялся} — тебе душно.']),
+  {n:'Сосед', t:'[Вызвать скорую?|~lehazmin]'},
+  ch('Не нужно, просто душно.',['lo',1,'«[Нет|lo], [спасибо|toda]» — и всё в порядке.'],['hatsilu',0,'«Помогите!» — это уже паника. Всё не так страшно.']),
+  ch('Тренировка закончилась. Поблагодари.',['toda',1,'Теперь ты знаешь дорогу в убежище.'],['mi_acharon',0,'Это «кто последний». Очереди тут нет.']),
+ ],
+ steps:[
+  {p:'Последний день. Сегодня я почти молчу — дальше {сама|сам}. Только пара табличек напоследок.'},
+  {n:'Бариста', t:'[Привет|shalom]! [Что будешь?|~bishvilech]'},
+  ch('Закажи «афух».',['rotza|hafuch',1,'Записывает.'],['efshar|hafuch',1,'Записывает.'],['eifo|hafuch',0,'«Где афух?» — он ещё не сварен.']),
+  {n:'Бариста', t:'[Сахар?|sukar]'},
+  ch('Без сахара.',['bli|sukar',1,'Ок.'],['ken',0,'Ты же {хотела|хотел} без сахара.']),
+  {n:'Бариста', t:'[Пятнадцать|~15].'},
+  ch('Ого. Скажи, что дорого.',['yakar',1,'Он смеётся: в Тель-Авиве, говорит, ещё дороже.'],['achat',0,'Это «один». Цену ты уже {услышала|услышал}.']),
+  {p:'Автобус на пляж Бат-Галим.'},
+  {sign:'rachatsa', t:'Вне сезона на пляже: [купаться запрещено|rachatsa]. Без спасателей правда нельзя.'},
+  {sign:'asur', t:'И у скамейки: [курить запрещено|asur].'},
+  ch('Проверь у водителя, туда ли он едет.',['nosea|@batgalim',1,'Да.'],['eifo|@batgalim',0,'«Где Бат-Галим?» — он не обязан знать карту наизусть.']),
+  {n:'Водитель', t:'[Следующая остановка|~next]…'},
+  ch('Он объявил что-то быстро.',['leat',1,'Повторил.'],['odpaam',1,'Повторил.'],['naim',0,'«Очень приятно» — ему, наверное, тоже.']),
+  {n:'Продавец мороженого', t:'[Три|shalosh] [за двадцать|esrim:beesrim]!'},
+  ch('Тебе нужно одно.',['achat',1,'«[Семь|~sheva]» — говорит он.'],['shalosh',0,'Три мороженых — смело.']),
+  ch('Поблагодари.',['toda',1,'Море, мороженое и иврит.'],['mi_acharon',0,'Очереди нет — ты {одна|один}.']),
+  {p:'Вечером в ульпане незнакомое слово на доске.'},
+  ch('Спроси.',['ma_ze',1,'Учительница пишет перевод. [Прекрасно!|!yofi]'],['eich_omrim||надежда',1,'Учительница пишет его на доске.'],['lo_margisha',0,'Ты в порядке — просто слово незнакомое.']),
+  {n:'Учительница', t:'[Это «надежда»|~tikva].'},
+  {p:'Две недели назад у тебя было одно слово — [привет|shalom]. Теперь — около ста. Дальше ульпан, а я буду рядом. Черепахи никуда не торопятся.'},
+  ch('Попрощайся с Пниной.',['shalom',1,'[Пока|shalom]! И без ошибок мне тут. Повторения никуда не денутся.'],['toda',1,'И тебе [спасибо|toda]. Возвращайся — повторения никуда не денутся.']),
+ ]},
+];
+const INTERVALS = [1,1,2,4,7,14,30];
+const ABC = [['א','алеф','немая, держит гласную'],['ב','бет / вет','б или в'],['ג','гимел','г'],['ד','далет','д'],['ה','hэй','h, на конце слова немая'],['ו','вав','в, у или о'],['ז','заин','з'],['ח','хет','х'],['ט','тет','т'],['י','йуд','й или и'],['כ','каф / хаф','к или х'],['ל','ламед','л'],['מ','мем','м'],['נ','нун','н'],['ס','самех','с'],['ע','айин','немая, держит гласную'],['פ','пэй / фэй','п или ф'],['צ','цади','ц'],['ק','куф','к'],['ר','рейш','р'],['ש','шин / син','ш или с'],['ת','тав','т']];
+const FINALS = [['ך','хаф софит','х на конце слова'],['ם','мем софит','м на конце слова'],['ן','нун софит','н на конце слова'],['ף','фэй софит','ф на конце слова'],['ץ','цади софит','ц на конце слова']];
+
+/* ===== Состояние: несколько учеников на одном устройстве ===== */
+const KEY='pilpel-v3', OLDKEY='pilpel-phrases-v1';
+function defaults(){ return {profiles:{}, active:null, offset:0, nikud:true, translit:true, ktav:false, updated:0}; }
+function newProfile(name, heName, gender){ return {name, heName:heName||'', gender, words:{}, done:[], lastDone:null, scolds:[]}; }
+let state=defaults();
+try{
+  const raw=localStorage.getItem(KEY);
+  if(raw) state=Object.assign(defaults(), JSON.parse(raw));
+  else { const old=localStorage.getItem(OLDKEY); if(old){ const o=JSON.parse(old);
+    const pr=newProfile('Ученица','', 'f'); Object.assign(pr,{words:o.words||{},done:o.done||[],lastDone:o.lastDone||null});
+    state.profiles.p1=pr; state.active='p1'; ['offset','nikud','translit','ktav'].forEach(k=>{ if(k in o) state[k]=o[k]; }); } }
+}catch(e){}
+const P=()=>state.profiles[state.active];
+const gen=()=>P()?P().gender:'f';
+let db=null, uid=null, chain=Promise.resolve(), lastRemote='';
+function save(){
+  state.updated=Date.now(); const json=JSON.stringify(state);
+  try{ localStorage.setItem(KEY,json); }catch(e){}
+  if(db&&uid&&json!==lastRemote){ chain=chain.then(()=>db.doc('data/users/'+uid+'/pilpel-v3').set({state:json})).then(()=>{lastRemote=json;}).catch(()=>{}); }
+}
+(async()=>{ try{
+  if(!window.claude||!window.claude.use) return;
+  const [d,u]=await Promise.all([claude.use('db'),claude.use('user')]); if(!d||!u) return;
+  const id=await u.id(); if(!id) return; db=d; uid=id;
+  const snap=await db.doc('data/users/'+uid+'/pilpel-v3').get();
+  if(snap.exists){ const r=snap.data(); if(r&&typeof r.state==='string'){ const s=JSON.parse(r.state); lastRemote=r.state;
+    if((s.updated||0)>(state.updated||0)&&!S){ state=Object.assign(defaults(),s); try{localStorage.setItem(KEY,r.state);}catch(e){} if(view==='profiles'&&state.active) view='home'; render(); } } }
+  else if(state.updated) save();
+}catch(e){} })();
+
+function dayKey(add=0){ const d=new Date(); d.setDate(d.getDate()+state.offset+add);
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+const today=()=>dayKey(0);
+const W=()=>P().words;
+const known=k=>!!(W()[k]&&W()[k].lvl>=1);
+const learnedCount=()=>Object.keys(ITEMS).filter(known).length;
+const dueKeys=()=>{ const t=today(); return Object.keys(W()).filter(k=>W()[k].due<=t); };
+const nextEpisode=()=>EPISODES[P().done.length]||null;
+const availableToday=()=>!!nextEpisode()&&P().lastDone!==today();
+function plural(n,a,b,c){ const m10=n%10,m100=n%100; if(m10===1&&m100!==11) return a; if(m10>=2&&m10<=4&&(m100<12||m100>14)) return b; return c; }
+
+/* ===== Род ученика и разбор ===== */
+const G=t=>t?t.replace(/\{([^{}|]*)\|([^{}]*)\}/g,(m,f,mm)=>gen()==='m'?mm:f):t;
+const gv=o=>gen()==='m'&&o.m?Object.assign({},o,o.m):o;
+const NIK=/[\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7]/g;
+function plainHe(he){ return he.split(/(\s+)/).map(w=>{ const core=w.replace(/[?!.,«»]/g,''); const f=FIX[core]; return f?w.replace(core,f):w.replace(NIK,''); }).join(''); }
+const fmt=he=>state.nikud?he:plainHe(he);
+const dots=s=>s.replace('___','…');
+let pops=[];
+function R(ref){
+  if(ref[0]==='~') return Object.assign({gloss:true},gv(GLOSS[ref]));
+  if(ref[0]==='!'){ const k=ref.slice(1); return Object.assign({scold:true,key:k},gv(SCOLDS[k])); }
+  if(ref==='@me'){ const p=P(); return {name:true, he:p.heName, tr:p.heName?'':p.name, ru:p.name}; }
+  if(ref[0]==='@') return Object.assign({name:true},NAMES[ref]);
+  const [k,f]=ref.split(':'); const it=gv(ITEMS[k]);
+  if(f){ const F=FORMS[f]; return {he:F.he,tr:F.tr,ru:F.ru,note:F.note,base:it,key:k,form:f,when:it.when}; }
+  return {he:it.he,tr:it.tr,ru:it.ru,note:it.note,key:k,when:it.when,kind:it.kind};
+}
+const keyOf=ref=>ref.split(':')[0];
+const isItem=ref=>ref&&!'~@!'.includes(ref[0]);
+function build(ref, fillRef, fillRu, forceHe){
+  const i=R(ref); let html=fmt(i.he), tr=i.tr, plain=i.he, fill=null;
+  if(i.he.includes('___')){
+    if(fillRef) fill=R(fillRef);
+    const fillHe=fill&&fill.he&&(forceHe||fill.name||known(keyOf(fillRef)));
+    const [a,b]=i.he.split('___'); const [ta,tb]=i.tr.split('___');
+    plain=fill&&fill.he?a+fill.he+b:a+' '+b;
+    if(fillHe){ html=fmt(a)+fmt(fill.he)+fmt(b); tr=ta+fill.tr+tb; }
+    else { const w=fillRu||(fill?fill.ru:'…'); html=fmt(a)+`<bdi dir="ltr" lang="ru" class="slot">${w}</bdi>`+fmt(b); tr=ta+w+tb; }
+  }
+  return {info:i, fill, html, tr, plain};
+}
+function optBuild(t){
+  const parts=t.split('+').map(p=>{ const [ref,fillRef,fillRu]=p.split('|'); return build(ref,fillRef||null,fillRu||null,true); });
+  if(parts.length===1) return parts[0];
+  return {info:{ru:parts.map(p=>p.info.ru).join(' + ')}, html:parts.map(p=>p.html).join(' ')+'?', tr:parts.map(p=>p.tr).join(' ')+'?',
+    plain:parts.map(p=>p.plain).join(' ')+'?', fill:null, multi:parts};
+}
+function optKeys(t){ const ks=[]; t.split('+').forEach(p=>{ const [ref,fr]=p.split('|'); if(isItem(ref)) ks.push(keyOf(ref)); if(isItem(fr)) ks.push(keyOf(fr)); }); return ks; }
+function heTok(b, cls){
+  const idx=pops.push(b)-1;
+  const inner=state.translit&&b.tr?`<ruby>${b.html}<rt>${b.tr}</rt></ruby>`:b.html;
+  return `<bdi dir="rtl" lang="he" class="${cls}" data-i="${idx}" tabindex="0" role="button">${inner}</bdi>`;
+}
+const hasScold=k=>P().scolds.includes(k);
+function mixed(text, intro){
+  return G(text).replace(/\[([^\]]+)\]/g,(m,inner)=>{
+    const [ru,ref,fillRef,fillRu]=inner.split('|');
+    if(ref[0]==='@') return ru;
+    if(ref[0]==='!') return hasScold(ref.slice(1))?heTok(build(ref),'w sc'):ru;
+    const b=build(ref,fillRef,fillRu,false);
+    if(ref[0]==='~') return heTok(b,'gl');
+    const k=keyOf(ref);
+    if(known(k)) return heTok(b,'w'+(b.info.form?' form':''));
+    if(intro&&intro.has(k)){ const bb=build(ref,fillRef,fillRu,true); bb.isNew=true; const idx=pops.push(bb)-1;
+      return `<ruby class="intro" data-i="${idx}" tabindex="0" role="button">${ru}<rt lang="he">${bb.html}</rt></ruby>`; }
+    return ru;
+  });
+}
+/* вывеска: всегда без огласовок, как в жизни; подпись по-русски, пока слово не выучено */
+const signText=k=>ITEMS[k].s||ITEMS[k].he.replace(NIK,'');
+function signHTML(k, withCap=true){
+  const it=ITEMS[k]; const b={info:Object.assign(R(k),{sign:true}), html:fmt(it.he), tr:it.tr, plain:it.he, fill:null};
+  const idx=pops.push(b)-1;
+  return `<div class="signwrap"><span class="sign sg-${it.sg}" lang="he" dir="rtl" data-i="${idx}" tabindex="0" role="button">${signText(k)}</span>${withCap&&!known(k)?`<div class="sign-cap">${G(it.ru)}</div>`:''}</div>`;
+}
+
+/* ===== Пнина ===== */
+const TURTLE_SVG=`<ellipse cx="13" cy="41" rx="4.5" ry="3.5" fill="#A9C98C"/><ellipse cx="37" cy="41" rx="4.5" ry="3.5" fill="#A9C98C"/><path d="M40 33 q5 -9 10 -10" stroke="#A9C98C" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M5 37 Q5 15 25 15 Q45 15 45 37 Z" fill="var(--cat)"/><path d="M19 22 L31 22 L35 30 L31 37 M19 22 L15 30 L19 37 M15 30 H6 M35 30 H44 M19 22 L16 16.5 M31 22 L34 16.5" stroke="#2E4A22" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity=".55"/><path d="M4 37.5 H46" stroke="#2E4A22" stroke-width="2.2" stroke-linecap="round" opacity=".6"/><circle cx="49" cy="21" r="7" fill="#A9C98C"/><circle cx="46.8" cy="20" r="2.6" fill="#fff" stroke="#16303A" stroke-width="1.3"/><circle cx="52.2" cy="20" r="2.6" fill="#fff" stroke="#16303A" stroke-width="1.3"/><path d="M49.4 20 h0.2" stroke="#16303A" stroke-width="1"/><circle cx="46.8" cy="20.3" r=".9" fill="#16303A"/><circle cx="52.2" cy="20.3" r=".9" fill="#16303A"/><path d="M45.5 24.8 q3.5 -1.2 6.5 0" stroke="#16303A" stroke-width="1.2" fill="none" stroke-linecap="round"/>`;
+const CAT=`<svg class="cat" viewBox="0 0 56 56" aria-hidden="true">${TURTLE_SVG}</svg>`;
+const CATSM=`<svg class="cat sm" viewBox="0 0 56 56" aria-hidden="true">${TURTLE_SVG}</svg>`;
+function pickScold(){
+  const all=Object.keys(SCOLDS), got=P().scolds, fresh=all.filter(k=>!got.includes(k));
+  let k;
+  if(fresh.length&&(got.length===0||Math.random()<.6)){ k=fresh[Math.floor(Math.random()*fresh.length)]; got.push(k); save();
+    setTimeout(()=>toast(`Новое ругательство в коллекции: ${G(SCOLDS[k].ru)} (${got.length} из ${all.length})`),50); }
+  else k=(got.length?got:all)[Math.floor(Math.random()*(got.length||all.length))];
+  return `[${SCOLDS[k].ru}|!${k}]`;
+}
+
+function msgHTML(e, intro, fresh){
+  const f=fresh?' fresh':'';
+  if(e.who==='p') return `<div class="msg p${f}">${CATSM}<div class="bubble"><div class="who">Пнина</div><p>${mixed(e.t,intro)}</p></div></div>`;
+  if(e.who==='sign') return `<div class="msg p${f}">${CATSM}<div class="bubble"><div class="who">Пнина</div><p>${mixed(e.t,intro)}</p>${signHTML(e.key)}</div></div>`;
+  if(e.who==='n') return `<div class="msg n${f}"><div class="av" aria-hidden="true">${e.name[0]}</div><div class="bubble"><div class="who">${e.name}</div><p>${mixed(e.t,intro)}</p></div></div>`;
+  const b=optBuild(e.t); const idx=pops.push(b)-1;
+  return `<div class="msg me${f}"><div class="bubble"><div class="who" style="color:inherit;opacity:.75">Ты</div><p><bdi dir="rtl" lang="he" class="w" data-i="${idx}" tabindex="0" role="button">${state.translit?`<ruby>${b.html}<rt>${b.tr}</rt></ruby>`:b.html}</bdi></p></div></div>`;
+}
+const stepEntry=s=>s.sign?{who:'sign',key:s.sign,t:s.t}:s.p?{who:'p',t:s.p}:{who:'n',name:s.n,t:s.t};
+function stepsToLog(steps){
+  const log=[]; steps.forEach(s=>{
+    if(!s.choice) log.push(stepEntry(s));
+    else { const o=s.choice.opts.find(o=>o.ok); log.push({who:'me',t:o.t}); log.push({who:'p',t:o.r}); }
+  }); return log;
+}
+
+/* ===== Озвучка ===== */
+const isNative=()=>{ try{ return !!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()); }catch(e){ return false; } };
+function speak(he){
+  if(isNative()){
+    window.Capacitor.nativePromise('TextToSpeech','speak',{text:he,lang:'he-IL',rate:0.85})
+      .catch(()=>toast('Нет голоса для иврита. Добавь иврит в «Синтезе речи Google»: Настройки → Специальные возможности → Синтез речи.'));
+    return;
+  }
+  try{
+    if(!('speechSynthesis' in window)){ toast('Озвучка в этом браузере недоступна.'); return; }
+    const u=new SpeechSynthesisUtterance(he); u.lang='he-IL'; u.rate=.85;
+    const vs=speechSynthesis.getVoices(); const v=vs.find(v=>/^(he|iw)/i.test(v.lang||''));
+    if(v) u.voice=v; else if(vs.length) toast('На этом устройстве нет голоса для иврита. Его можно добавить в настройках речи системы.');
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){ toast('Озвучка не сработала.'); }
+}
+try{ speechSynthesis.getVoices(); }catch(e){}
+let toastTimer;
+function toast(t){ const el=document.getElementById('toast'); el.textContent=t; el.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.hidden=true,4500); }
+
+/* ===== Сессия ===== */
+let view=state.active?'home':'profiles', S=null, readEp=null, resetArmed=false, newGender='f';
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function poolFor(key, kind, maxDay){
+  const avail=Object.keys(ITEMS).filter(k=>k!==key&&ITEMS[k].day<=maxDay);
+  let p=shuffle(avail.filter(k=>ITEMS[k].kind===kind));
+  if(p.length<3) p=p.concat(shuffle(avail.filter(k=>ITEMS[k].kind!==kind&&(kind!=='s'||true))));
+  return p.slice(0,3);
+}
+function makeQ(key, type){
+  const it=ITEMS[key]; const maxDay=S&&S.ep?S.ep.n:99;
+  if(!type) type=Math.random()<.5?'he2ru':(it.kind==='p'&&it.when?'sit':'ru2he');
+  return {key,type,opts:shuffle([key,...poolFor(key,it.kind,maxDay)]),picked:null};
+}
+function newScene(steps, kind){
+  return {kind, steps:steps.map(s=>s.choice?{choice:{prompt:s.choice.prompt,opts:shuffle(s.choice.opts)}}:s), pos:0, log:[], tried:new Set(), first:true};
+}
+function startDay(){
+  const ep=nextEpisode(); S={ep, tested:new Set()};
+  if(ep.recap){ S.sc=newScene(ep.recap,'recap'); view='scene'; advance(); } else afterRecap();
+  render();
+}
+function afterRecap(){
+  const due=dueKeys().filter(k=>!S.tested.has(k));
+  if(due.length){ S.review=shuffle(due).map(k=>makeQ(k)); S.ri=0; view='review'; } else startMain();
+}
+function startMain(){ S.sc=newScene(S.ep.steps,'main'); view='scene'; advance(); }
+function finishDay(){
+  S.ep.items.forEach(k=>{ W()[k]={lvl:1,due:dayKey(1)}; });
+  P().done.push(S.ep.n); P().lastDone=today(); save(); view='done';
+}
+function advance(){ const sc=S.sc, s=sc.steps[sc.pos]; if(!s||s.choice) return; sc.log.push(stepEntry(s)); sc.pos++; }
+function srsFromChoice(step, picked){
+  const okOpt=step.choice.opts.find(o=>o.ok);
+  const keys=picked.ok?optKeys(picked.t):optKeys(okOpt.t); const t=today();
+  keys.forEach(k=>{ const w=W()[k]; if(!w) return; S.tested.add(k);
+    if(picked.ok){ if(w.due<=t){ w.lvl=Math.min(w.lvl+1,6); w.due=dayKey(INTERVALS[w.lvl]); } }
+    else { w.lvl=0; w.due=dayKey(1); } });
+  save();
+}
+
+/* ===== Экраны ===== */
+function headerHTML(){
+  const p=P(); const inS=['review','scene','cards','quiz'].includes(view);
+  const tabs=[['home','Сегодня'],['book','Разговорник'],['archive','Сцены'],['abc','Алфавит'],['coll','Ругательства']];
+  return `<header>${CAT}<div style="flex:1"><div class="name">Мора Пнина<bdi dir="rtl" lang="he" class="hefont">${fmt('מוֹרָה פְּנִינָה')}</bdi></div>
+   ${p?`<div class="count">${p.name}: на иврите уже <b>${learnedCount()}</b> из ${Object.keys(ITEMS).length}</div>`:''}</div>
+   ${p&&!inS?`<button class="toggle who-btn" data-nav="profiles">${p.gender==='m'?'Ученик':'Ученица'}: ${p.name}</button>`:''}</header>
+   ${p?`<nav>${inS?'':tabs.map(([v,l])=>`<button data-nav="${v}" aria-current="${view===v||(v==='archive'&&view==='read')}">${l}</button>`).join('')}
+   <span class="spacer"></span>
+   <button class="toggle" data-set="nikud" aria-pressed="${state.nikud}" title="Огласовки — точки и чёрточки под буквами">ניקוד</button>
+   <button class="toggle" data-set="ktav" aria-pressed="${state.ktav}" title="Показывать иврит рукописным">от руки</button>
+   <button class="toggle" data-set="translit" aria-pressed="${state.translit}">транслит</button></nav>`:'<div style="height:16px"></div>'}`;
+}
+function profilesHTML(){
+  const ids=Object.keys(state.profiles);
+  const list=ids.map(id=>{ const p=state.profiles[id];
+    return `<div class="row"><div class="meta"><b>${p.name}</b><small>${p.gender==='m'?'ученик':'ученица'} · день ${Math.min(p.done.length+1,EPISODES.length)} из ${EPISODES.length}</small></div>
+     ${id===state.active?'<span class="sub" style="margin:0">сейчас</span>':`<button class="btn ghost" data-switch="${id}">Учиться как ${p.name}</button>`}</div>`; }).join('');
+  return `<h2>${ids.length?'Кто учится?':'Знакомимся'}</h2>
+   <p class="sub">${ids.length?'У каждого свой прогресс, свои повторения и своя коллекция ругательств.':'Иврит различает, кто говорит: «я не понимаю» у женщины и у мужчины звучит по-разному. Поэтому фразы подстроятся под тебя.'}</p>
+   ${list?`<div class="list">${list}</div><p class="group">Добавить ученика</p>`:''}
+   <div class="card newp">
+    <label>Имя<input id="pname" type="text" autocomplete="off" placeholder="Как к тебе обращаться"></label>
+    <label>Имя на иврите <small>(необязательно — появится в сцене знакомства)</small><input id="phe" type="text" dir="rtl" lang="he" autocomplete="off"></label>
+    <div class="gsel" role="radiogroup" aria-label="Кто учится">
+      <button data-g="f" role="radio" aria-checked="${newGender==='f'}">Ученица</button>
+      <button data-g="m" role="radio" aria-checked="${newGender==='m'}">Ученик</button></div>
+    <div class="actions"><button class="btn" data-act="addp">Начать учиться</button></div>
+   </div>
+   ${ids.length?`<p class="group">Перенос прогресса</p><div class="card newp">
+    <p class="sub" style="margin:0 0 10px">Код содержит всех учеников. Скопируй его на одном устройстве и вставь на другом — например, при переходе из браузера в приложение.</p>
+    <textarea id="xfer" rows="3" spellcheck="false" placeholder="Сюда появится или вставляется код"></textarea>
+    <div class="actions" style="margin-top:10px"><button class="btn ghost" data-act="export">Показать и скопировать код</button><button class="btn ghost" data-act="import">Загрузить код из поля</button></div>
+   </div>`:''}`;
+}
+function homeHTML(){
+  const ep=nextEpisode(); let body;
+  if(availableToday()){
+    const due=dueKeys().length, nw=ep.items.filter(k=>ITEMS[k].kind!=='s').length, ns=ep.items.length-nw;
+    const parts=[];
+    if(ep.recap) parts.push(`сцена-повторение «${G(ep.recapTitle)}»`); else if(due) parts.push(`повторение: ${due}`);
+    parts.push(`новая сцена: ${nw?`${nw} ${plural(nw,'новая фраза','новые фразы','новых фраз')}`:'без новых фраз'}${ns?` и ${ns} ${plural(ns,'вывеска','вывески','вывесок')}`:''}`);
+    body=`<h2>День ${ep.n}. ${ep.title}</h2><p class="sub">Сегодня: ${parts.join(', потом ')}.</p>
+     <div class="actions"><button class="btn" data-act="start">Начать день ${ep.n}</button></div>`;
+  } else if(ep){
+    body=`<h2>На сегодня всё</h2><p class="sub">Следующий день откроется завтра. Разговорник всегда под рукой — с ним можно идти в магазин.</p>
+     <div class="actions"><button class="btn ghost" data-nav="book">Открыть разговорник</button></div>`;
+  } else {
+    const d=dueKeys().length;
+    body=`<h2>Курс пройден</h2><p class="sub">Все 14 дней позади. Повторения продолжают приходить по расписанию.</p>
+     ${d?`<div class="actions"><button class="btn" data-act="reviewonly">Повторить: ${d}</button></div>`:''}`;
+  }
+  return body+`<div class="settings">Для проверки:<br><button data-act="skip">Сделать вид, что наступило завтра</button>
+   <button data-act="reset">${resetArmed?`Нажми ещё раз, чтобы стереть прогресс: ${P().name}`:'Сбросить прогресс'}</button>
+   ${state.offset?`<div style="margin-top:6px">Сдвиг даты: +${state.offset} дн. (сейчас ${today()})</div>`:''}</div>`;
+}
+function qHTML(q,title,total,idx){
+  const it=gv(ITEMS[q.key]), sign=it.kind==='s', heShow=fmt(dots(it.he)), trShow=dots(it.tr);
+  let target, ask;
+  if(q.type==='he2ru'){ ask=sign?'Что значит эта табличка?':'Что это значит?'; target=sign?`<div class="qsign">${signHTML(q.key,false)}</div>`:`<p class="target he hefont" lang="he">${heShow}</p>`; }
+  else if(q.type==='sit'){ ask='Что скажешь?'; target=`<p class="sit">${G(it.when)}</p>`; }
+  else { ask=sign?'Какая табличка?':'Как это на иврите?'; target=`<p class="target">${G(it.ru)}</p>`; }
+  const opts=q.opts.map(k=>{
+    const o=gv(ITEMS[k]); const asSign=q.type!=='he2ru'&&o.kind==='s';
+    let cls=q.type==='he2ru'?'':(asSign?'':'he hefont');
+    if(q.picked){ if(k===q.key) cls+=' right'; else if(k===q.picked) cls+=' wrong'; }
+    const label=q.type==='he2ru'?G(o.ru):asSign?`<span class="sign sm sg-${o.sg}" lang="he" dir="rtl">${signText(k)}</span>`
+      :`<bdi dir="rtl" lang="he">${fmt(dots(o.he))}</bdi>${q.picked&&state.translit?`<small>${dots(o.tr)}</small>`:''}`;
+    return `<button class="${cls}" data-pick="${k}" ${q.picked?'disabled':''}>${label}</button>`;
+  }).join('');
+  let fb='';
+  if(q.picked){
+    const ok=q.picked===q.key;
+    fb=`<p class="feedback">${ok?'Верно':`<b>Пнина:</b> ${mixed(q.scold||'')} Правильно так`}: <bdi dir="rtl" lang="he" class="hefont inl">${heShow}</bdi> — ${trShow}, «${G(it.ru)}».
+      ${ok?'':(view==='review'?' Это вернётся в сцены по-русски, пока не вспомнишь.':' Спрошу ещё раз в конце.')}</p>
+      <div class="actions"><button class="btn" data-act="nextq">Дальше</button><button class="say" data-say="${it.he.replace('___','')}">Послушать</button></div>`;
+  }
+  return `<h2>${title}</h2><div class="progress"><i style="width:${Math.round(idx/total*100)}%"></i></div>
+   <div class="q"><p class="ask">${ask}</p>${target}<div class="opts">${opts}</div>${fb}</div>`;
+}
+function sceneHTML(){
+  const sc=S.sc, ep=S.ep, recap=sc.kind==='recap';
+  const intro=recap?null:new Set(ep.items);
+  const log=sc.log.map((e,i)=>msgHTML(e,intro,i===sc.log.length-1)).join('');
+  let below=''; const cur=sc.steps[sc.pos];
+  if(cur&&cur.choice){
+    below=`<div class="choice"><p class="hint">${mixed(cur.choice.prompt,intro)}</p><div class="reply">${cur.choice.opts.map((o,i)=>{
+      const b=optBuild(o.t); const unknown=optKeys(o.t).some(k=>!known(k));
+      const gloss=unknown?`<small>${G(b.info.ru)}${state.translit?' · '+b.tr:''}</small>`:(state.translit?`<small>${b.tr}</small>`:'');
+      return `<button class="hefont" data-opt="${i}" lang="he" ${sc.tried.has(i)?'disabled':''}>${b.html}${gloss}</button>`; }).join('')}</div></div>`;
+  } else if(cur) below=`<div class="actions"><button class="btn" data-act="more">Дальше</button></div>`;
+  else if(recap) below=`<div class="actions"><button class="btn" data-act="torecapend">К новой сцене</button></div>`;
+  else below=`<div class="actions"><button class="btn" data-act="cards">Разобрать новое</button></div>`;
+  const head=recap?`<h2>Вспоминаем: ${G(ep.recapTitle)}</h2><p class="sub">Сцена на уже знакомые фразы. Первый ответ на каждый ход засчитывается как повторение.</p>`
+    :`<h2>День ${ep.n}. ${ep.title}</h2><p class="sub">Нажми на слово на иврите, чтобы услышать его и увидеть перевод. Серые с пунктиром — то, что говорят тебе: их достаточно узнавать.</p>`;
+  return head+`<div class="log">${log}</div>${below}`;
+}
+function formsOf(k){ return Object.values(FORMS).filter(f=>f.base===k); }
+function ktavLine(he){ return `<div class="ktavline"><span>от руки</span><bdi dir="rtl" lang="he" class="ktav">${fmt(dots(he))}</bdi></div>`; }
+function noteHTML(t){ return G(t).replace(/[\u0590-\u05FF][\u0590-\u05FF\s־]*[\u0590-\u05FF]|[\u0590-\u05FF]/g, m=>`<bdi dir="rtl" lang="he" class="hefont inl">${fmt(m)}</bdi>`); }
+function itemCard(k){
+  const it=gv(ITEMS[k]), fs=formsOf(k), sign=it.kind==='s';
+  return `<div class="card">${sign?`<div style="text-align:right">${signHTML(k,false)}</div><p class="sub" style="margin:8px 0 0">Так на вывеске. С огласовками: <bdi dir="rtl" lang="he" class="hefont inl">${it.he}</bdi></p>`:`<div class="big hefont" lang="he">${fmt(dots(it.he))}</div>${ktavLine(it.he)}`}
+   <div class="ru">${G(it.ru)}</div><div class="tr">${dots(it.tr)}</div>
+   ${it.when?`<p style="margin:8px 0 0;font-size:15px">Когда: ${G(it.when)}</p>`:''}
+   ${it.note?`<p style="margin:6px 0 0;font-size:15px;color:var(--muted)">${noteHTML(it.note)}</p>`:''}
+   ${fs.length?`<ul>${fs.map(f=>`<li><bdi dir="rtl" lang="he" class="hefont">${fmt(dots(f.he))}</bdi> — ${f.ru}</li>`).join('')}</ul>`:''}
+   <div style="margin-top:10px"><button class="say" data-say="${it.he.replace('___','')}">Послушать</button></div></div>`;
+}
+function cardsHTML(){
+  const ph=S.ep.items.filter(k=>ITEMS[k].kind!=='s'), sg=S.ep.items.filter(k=>ITEMS[k].kind==='s');
+  return `<h2>Новое за день</h2><p class="sub">После проверки всё это будет на иврите во всех сценах — и в новых, и в старых.</p>
+   <div class="cards">${ph.map(itemCard).join('')}</div>
+   ${sg.length?`<p class="group">Вывески</p><div class="cards">${sg.map(itemCard).join('')}</div>`:''}
+   <div class="actions"><button class="btn" data-act="quiz">Проверить себя</button></div>`;
+}
+function doneHTML(){
+  const log=stepsToLog(S.ep.steps).slice(-6); const last=!nextEpisode();
+  return `<h2>${last?'Курс пройден':'День '+S.ep.n+' пройден'}</h2><p class="sub">${last?'Две недели, около сотни фраз, слов и вывесок. Повторения будут приходить и дальше.':'Так эта сцена выглядит теперь:'}</p>
+   <div class="log">${log.map(e=>msgHTML(e,null,false)).join('')}</div>
+   <div class="actions"><button class="btn" data-nav="home">Готово</button><button class="btn ghost" data-nav="book">Разговорник</button></div>`;
+}
+function bookHTML(){
+  const row=k=>{ const it=gv(ITEMS[k]), w=W()[k], lvl=w?w.lvl:0, fs=formsOf(k);
+    const he=it.kind==='s'?`<span class="sign sm sg-${it.sg}" lang="he" dir="rtl">${signText(k)}</span>`:`<span class="hefont">${fmt(dots(it.he))}</span><span class="ktav small">${fmt(dots(it.he))}</span>`;
+    return `<div class="row"><div class="he" lang="he" dir="rtl">${he}</div>
+     <div class="meta">${G(it.ru)}<small>${dots(it.tr)}${fs.length?' · '+fs.map(f=>`<bdi dir="rtl" lang="he" class="hefont">${fmt(dots(f.he))}</bdi> ${f.ru}`).join(', '):''}${lvl===0?' · забылось, пока по-русски':''}</small></div>
+     <button class="say" data-say="${it.he.replace('___','')}" aria-label="Послушать">▶</button>
+     <div class="dots" title="Уровень ${lvl}">${[1,2,3,4,5].map(i=>`<i class="${i<=lvl?'on':''}"></i>`).join('')}</div></div>`; };
+  const groups=EPISODES.map(ep=>{
+    if(!P().done.includes(ep.n)) return `<p class="group" style="color:var(--muted)">День ${ep.n}. ${ep.title} — откроется позже</p>`;
+    return `<p class="group">День ${ep.n}. ${ep.title}</p><div class="list">${ep.items.map(row).join('')}</div>`;
+  }).join('');
+  return `<h2>Разговорник</h2><p class="sub">Всё выученное по ситуациям: печатными буквами, от руки и на вывесках. Точки — сколько раз подряд ты вспомнил${gen()==='m'?'':'а'} фразу.</p>${groups}`;
+}
+function archiveHTML(){
+  return `<h2>Сцены</h2><p class="sub">Пройденные сцены показываются с тем, что ты знаешь сейчас.</p><div class="list">${EPISODES.map(e=>{
+    const open=P().done.includes(e.n);
+    return `<div class="row ${open?'':'locked'}">${open?`<button data-read="${e.n}"><b>День ${e.n}.</b> ${e.title}${e.recap?`<small style="display:block;color:var(--muted);font-size:13px">и повторение: ${G(e.recapTitle)}</small>`:''}</button>`:`<div class="meta"><b>День ${e.n}.</b> откроется позже</div>`}</div>`; }).join('')}</div>`;
+}
+function readHTML(){
+  const e=EPISODES.find(x=>x.n===readEp);
+  return `<h2>День ${e.n}. ${e.title}</h2><div class="log">${stepsToLog(e.steps).map(m=>msgHTML(m,null,false)).join('')}</div>
+   ${e.recap?`<h2 style="margin-top:28px">Повторение: ${G(e.recapTitle)}</h2><div class="log">${stepsToLog(e.recap).map(m=>msgHTML(m,null,false)).join('')}</div>`:''}
+   <div class="actions"><button class="btn ghost" data-nav="archive">К сценам</button></div>`;
+}
+function abcHTML(){
+  const cell=([l,n,s])=>`<div class="abc"><div class="pr hefont" lang="he">${l}</div><div class="ktav" lang="he">${l}</div><div class="nm">${n}</div><small>${s}</small></div>`;
+  return `<h2>Алфавит</h2><p class="sub">Слева печатная буква, справа — как её пишут от руки. Рукописные буквы бывают совсем не похожи на печатные, их стоит выучить отдельно. Пишут справа налево.</p>
+   <div class="abcgrid" dir="rtl">${ABC.map(cell).join('')}</div>
+   <p class="group">Конечные формы — пишутся только в конце слова</p>
+   <div class="abcgrid" dir="rtl">${FINALS.map(cell).join('')}</div>`;
+}
+function collHTML(){
+  const all=Object.keys(SCOLDS), got=P().scolds;
+  return `<h2>Коллекция ругательств</h2><p class="sub">Пнина ругается, когда ты ошибаешься. Каждое новое ругательство попадает сюда, а потом появляется в сценах уже на иврите. Собрано ${got.length} из ${all.length}.</p>
+   <div class="list">${all.map(k=>{ if(!got.includes(k)) return `<div class="row locked"><div class="he">???</div><div class="meta">Ещё не слышно<small>Ошибайся смелее</small></div></div>`;
+     const b=build('!'+k); return `<div class="row"><div class="he hefont" lang="he" dir="rtl">${b.html}</div><div class="meta">${G(SCOLDS[k].ru)}<small>${b.tr}</small></div>
+     <button class="say" data-say="${b.plain}" aria-label="Послушать">▶</button></div>`; }).join('')}</div>`;
+}
+function render(){
+  pops=[]; let m='';
+  document.documentElement.classList.toggle('ktav-all', !!state.ktav);
+  if(!P()&&view!=='profiles') view='profiles';
+  if(view==='profiles') m=profilesHTML();
+  else if(view==='home') m=homeHTML();
+  else if(view==='review') m=qHTML(S.review[S.ri],'Ещё пара фраз',S.review.length,S.ri);
+  else if(view==='scene') m=sceneHTML();
+  else if(view==='cards') m=cardsHTML();
+  else if(view==='quiz') m=qHTML(S.quiz[S.qi],'Проверка',S.quiz.length,S.qi);
+  else if(view==='done') m=doneHTML();
+  else if(view==='book') m=bookHTML();
+  else if(view==='archive') m=archiveHTML();
+  else if(view==='read') m=readHTML();
+  else if(view==='abc') m=abcHTML();
+  else if(view==='coll') m=collHTML();
+  document.getElementById('app').innerHTML=headerHTML()+m;
+}
+function scrollEnd(){ const r=window.matchMedia('(prefers-reduced-motion: reduce)').matches; window.scrollTo({top:document.body.scrollHeight,behavior:r?'auto':'smooth'}); }
+
+function openSheet(b){
+  const i=b.info; let note='';
+  if(i.sign) note+=`<div class="note">На вывеске: <bdi dir="rtl" lang="he">${signText(i.key)}</bdi>. Вывески пишут без огласовок${ITEMS[i.key].s?', и часто с лишними ו или י, чтобы слово читалось однозначно':''}.</div>`;
+  if(i.form) note+=`<div class="note">Форма от <bdi dir="rtl" lang="he">${fmt(dots(i.base.he))}</bdi> («${G(i.base.ru)}»).<br>${noteHTML(i.note)}</div>`;
+  else if(i.note) note+=`<div class="note">${noteHTML(i.note)}</div>`;
+  if(i.gloss) note+=`<div class="note">Так говорят тебе. Учить не обязательно — главное узнавать.</div>`;
+  if(i.scold) note+=`<div class="note">Из коллекции ругательств Пнины.</div>`;
+  if(b.isNew) note+=`<div class="note">Новое — выучишь сегодня.</div>`;
+  if(b.fill&&!b.fill.name) note+=`<div class="note">В пропуск подставлено: <bdi dir="rtl" lang="he">${fmt(b.fill.he)}</bdi> — ${G(b.fill.ru)}.</div>`;
+  if(b.multi) note+=`<div class="note">${b.multi.map(p=>`<bdi dir="rtl" lang="he">${p.html}</bdi> — ${G(p.info.ru)}`).join('<br>')}</div>`;
+  const he=b.html.replace(/<bdi[^>]*>(.*?)<\/bdi>/g,'$1');
+  document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-close><div class="sheet" role="dialog" aria-modal="true">
+   <div class="big hefont" lang="he">${he}</div>${ktavLine(b.plain)}<div class="tr">${b.tr||''}</div><div style="font-size:19px;font-weight:500">${G(i.ru)}</div>${note}
+   <div class="actions"><button class="say" data-say="${b.plain}">Послушать</button><button class="btn ghost" data-close>Закрыть</button></div></div></div>`;
+  document.querySelector('.sheet [data-close].btn').focus();
+}
+const closeSheet=()=>document.getElementById('sheet').innerHTML='';
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeSheet();
+  if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.i!==undefined){ e.preventDefault(); openSheet(pops[+e.target.dataset.i]); }
+});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-say],[data-close],[data-i],[data-nav],[data-set],[data-act],[data-pick],[data-opt],[data-read],[data-g],[data-switch]');
+  if(!t) return; const d=t.dataset;
+  if(d.say!==undefined){ speak(d.say); return; }
+  if(d.close!==undefined){ if(e.target===t||t.tagName==='BUTTON') closeSheet(); return; }
+  if(d.i!==undefined){ openSheet(pops[+d.i]); return; }
+  if(d.g){ newGender=d.g; document.querySelectorAll('[data-g]').forEach(b=>b.setAttribute('aria-checked', String(b.dataset.g===newGender))); return; }
+  if(d.switch){ state.active=d.switch; S=null; save(); view='home'; render(); return; }
+  if(d.nav){ view=d.nav; if(view==='home'||view==='profiles') S=null; resetArmed=false; render(); window.scrollTo(0,0); return; }
+  if(d.set){ state[d.set]=!state[d.set]; save(); render(); return; }
+  if(d.read){ readEp=+d.read; view='read'; render(); window.scrollTo(0,0); return; }
+  if(d.opt!==undefined){
+    const sc=S.sc, s=sc.steps[sc.pos], o=s.choice.opts[+d.opt];
+    if(sc.kind==='recap'&&sc.first){ srsFromChoice(s,o); sc.first=false; }
+    if(o.ok){ sc.log.push({who:'me',t:o.t}); sc.log.push({who:'p',t:o.r}); sc.pos++; sc.tried=new Set(); sc.first=true; speak(optBuild(o.t).plain); }
+    else { sc.tried.add(+d.opt); sc.log.push({who:'p',t:pickScold()+' '+o.r}); }
+    render(); scrollEnd(); return;
+  }
+  if(d.pick){
+    if(view==='review'){ const q=S.review[S.ri]; if(q.picked) return; q.picked=d.pick; const w=W()[q.key];
+      if(d.pick===q.key){ w.lvl=Math.min(w.lvl+1,6); w.due=dayKey(INTERVALS[w.lvl]); } else { w.lvl=0; w.due=dayKey(1); q.scold=pickScold(); } save(); }
+    else { const q=S.quiz[S.qi]; if(q.picked) return; q.picked=d.pick; if(d.pick!==q.key){ q.scold=pickScold(); S.quiz.push(makeQ(q.key,q.type)); } }
+    render(); return;
+  }
+  const a=d.act;
+  if(a==='addp'){
+    const name=(document.getElementById('pname').value||'').trim(), he=(document.getElementById('phe').value||'').trim();
+    if(!name){ toast('Напиши имя — так Пнина будет к тебе обращаться.'); return; }
+    const id='p'+Date.now(); state.profiles[id]=newProfile(name,he,newGender); state.active=id; save(); view='home'; render(); }
+  else if(a==='export'){
+    const code='PNINA1:'+btoa(unescape(encodeURIComponent(JSON.stringify({profiles:state.profiles}))));
+    const ta=document.getElementById('xfer'); ta.value=code; ta.select();
+    try{ navigator.clipboard.writeText(code).then(()=>toast('Код скопирован.'),()=>toast('Код в поле — скопируй его вручную.')); }catch(e){ toast('Код в поле — скопируй его вручную.'); } }
+  else if(a==='import'){
+    try{
+      const raw=(document.getElementById('xfer').value||'').trim();
+      if(!raw.startsWith('PNINA1:')) throw 0;
+      const data=JSON.parse(decodeURIComponent(escape(atob(raw.slice(7))))); if(!data||typeof data.profiles!=='object') throw 0;
+      let added=0, replaced=0;
+      Object.values(data.profiles).forEach(p=>{
+        if(!p||!p.name||!p.words) return;
+        const same=Object.keys(state.profiles).find(id=>state.profiles[id].name===p.name&&state.profiles[id].gender===p.gender);
+        if(same){ state.profiles[same]=Object.assign(newProfile(p.name,p.heName,p.gender),p); replaced++; }
+        else { const id='p'+Date.now()+added; state.profiles[id]=Object.assign(newProfile(p.name,p.heName,p.gender),p); added++; if(!state.active) state.active=id; }
+      });
+      save(); render(); toast(`Готово: добавлено ${added}, обновлено ${replaced}.`);
+    }catch(e){ toast('Это не похоже на код прогресса.'); } }
+  else if(a==='start'){ startDay(); window.scrollTo(0,0); }
+  else if(a==='reviewonly'){ S={review:shuffle(dueKeys()).map(k=>makeQ(k)),ri:0,reviewOnly:true}; view='review'; render(); }
+  else if(a==='more'){ advance(); render(); scrollEnd(); }
+  else if(a==='torecapend'){ afterRecap(); render(); window.scrollTo(0,0); }
+  else if(a==='cards'){ view='cards'; render(); window.scrollTo(0,0); }
+  else if(a==='quiz'){ S.quiz=shuffle(S.ep.items.flatMap(k=>{ const it=ITEMS[k]; return [makeQ(k,'he2ru'), makeQ(k, it.kind==='p'&&it.when?'sit':'ru2he')]; })); S.qi=0; view='quiz'; render(); window.scrollTo(0,0); }
+  else if(a==='nextq'){
+    if(view==='review'){ S.ri++; if(S.ri>=S.review.length){ if(S.reviewOnly){ view='home'; S=null; } else startMain(); } }
+    else { S.qi++; if(S.qi>=S.quiz.length) finishDay(); }
+    render(); window.scrollTo(0,0);
+  }
+  else if(a==='skip'){ state.offset++; save(); render(); }
+  else if(a==='reset'){ if(!resetArmed){ resetArmed=true; render(); return; }
+    const p=P(); Object.assign(p,{words:{},done:[],lastDone:null,scolds:[]}); resetArmed=false; save(); view='home'; S=null; render(); }
+});
+render();
+if(window.PNINA_PWA&&'serviceWorker' in navigator&&!isNative()) navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>

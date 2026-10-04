@@ -1,0 +1,8 @@
+{
+  "appId": "app.morapnina.hebrew",
+  "appName": "Мора Пнина",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#EEF5F4"
+  }
+}
