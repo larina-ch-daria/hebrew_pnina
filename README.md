@@ -5,7 +5,7 @@
 
 ## Как поставить
 
-**PWA.** Открой `[репозиторий](https://github.com/larina-ch-daria/hebrew_pnina)` на телефоне.
+**PWA.** Открой [репозиторий](https://github.com/larina-ch-daria/hebrew_pnina) на телефоне.
 - Android, Chrome: меню → «Установить приложение» (или «Добавить на главный экран»).
 - iPhone, Safari: «Поделиться» → «На экран „Домой“».
 
