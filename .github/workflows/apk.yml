@@ -33,12 +33,37 @@ jobs:
         run: npx cap sync android
       - name: Постоянный ключ подписи
         # Один и тот же ключ — чтобы новые версии ставились поверх старой и прогресс не терялся.
-        run: mkdir -p ~/.android && cp keystore/debug.keystore ~/.android/debug.keystore
+        # Прописываем ключ прямо в сборку: ~/.android/debug.keystore Gradle на раннере игнорирует.
+        run: |
+          cat >> android/app/build.gradle <<'GRADLE'
+
+          android {
+              signingConfigs {
+                  debug {
+                      storeFile file("../../keystore/debug.keystore")
+                      storePassword "android"
+                      keyAlias "androiddebugkey"
+                      keyPassword "android"
+                  }
+              }
+              buildTypes {
+                  debug {
+                      signingConfig signingConfigs.debug
+                  }
+              }
+          }
+          GRADLE
       - name: Сборка
         working-directory: android
         run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
       - name: Переименование
         run: cp android/app/build/outputs/apk/debug/app-debug.apk mora-pnina.apk
+      - name: Проверка подписи
+        # Если подпись не совпала с ключом из keystore/, сборка падает и в релиз ничего не уходит.
+        run: |
+          APKSIGNER="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)/apksigner"
+          "$APKSIGNER" verify --print-certs mora-pnina.apk | tee signature.txt
+          grep -qi "SHA-256 digest: b1e34a8c8c7ca12611825ef4bfb9effecc8e406afe78ad92afff693abfa34427" signature.txt
       - uses: actions/upload-artifact@v4
         with:
           name: mora-pnina-apk
