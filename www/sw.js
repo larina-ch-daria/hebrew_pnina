@@ -1,5 +1,5 @@
 /* Офлайн-кэш. После любой правки в www/ увеличь номер версии — иначе телефоны продолжат показывать старую. */
-const CACHE = 'pnina-v1';
+const CACHE = 'pnina-v4';
 const FILES = [
   './', './index.html', './manifest.webmanifest', './fonts/fonts.css',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png',
