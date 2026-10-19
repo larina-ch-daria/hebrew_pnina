@@ -189,6 +189,26 @@ h2{font-size:22px;font-weight:700;margin:4px 0 6px;line-height:1.25}
 .sc{color:var(--pepper)!important}
 .rt{color:var(--pepper);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
 .rootcard{margin-bottom:12px}
+.rtarget{display:flex;flex-direction:column;align-items:flex-end;margin:0 0 16px}
+.rtarget bdi{font-size:44px;font-weight:700;color:var(--sea);line-height:1.2}
+.rtarget span{font-size:14px;color:var(--muted)}
+.ropts{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.ropt{background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:12px 10px;min-height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--ink);text-align:center}
+.ropt .rhe{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:24px;color:var(--sea);white-space:nowrap}
+.ropt .rru{font-size:13px;color:var(--ink)}
+.ropt .rtag{font-size:11px;color:var(--muted)}
+.ropt.sel{border-color:var(--sea);background:var(--soft);box-shadow:inset 0 0 0 1px var(--sea)}
+.ropt.right{border-color:#2E8B57;background:color-mix(in srgb,#2E8B57 16%,var(--bg))}
+.ropt.right .rtag,.ropt.miss .rtag{color:#2E8B57;font-weight:500}
+.ropt.miss{border-color:#2E8B57;border-style:dashed}
+.ropt.wrong{border-color:var(--pepper);background:color-mix(in srgb,var(--pepper) 12%,var(--bg))}
+.ropt.wrong .rtag{color:var(--pepper);font-weight:500}
+.ropt.neutral{opacity:.55}
+.verdict{margin:16px 0 0;padding:12px 14px;border-radius:12px;font-size:15px}
+.verdict.good{background:color-mix(in srgb,#2E8B57 16%,var(--surface));border:1px solid #2E8B57}
+.verdict.bad{background:color-mix(in srgb,var(--pepper) 10%,var(--surface));border:1px solid var(--pepper)}
+.verdict .pn{color:var(--muted);font-size:14px}
+.ktav-all .ropt .rhe,.ktav-all .rtarget bdi{font-family:"Playpen Sans Hebrew","Frank Ruhl Libre",serif!important;font-weight:500!important}
 .rootline{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
 .rootletters{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:26px;color:var(--pepper)}
 .mt.miss{border-color:#2E8B57;border-style:dashed}
@@ -1473,7 +1493,7 @@ function homeHTML(){
      <div class="actions"><button class="btn" data-act="start">Начать день ${ep.n}</button></div>`;
   } else if(ep){
     body=`<h2>На сегодня всё</h2><p class="sub">Следующий день откроется завтра. Разговорник всегда под рукой — с ним можно идти в магазин.</p>
-     <div class="actions"><button class="btn ghost" data-nav="book">Открыть разговорник</button></div>`;
+     <div class="actions"><button class="btn ghost" data-nav="book">Открыть разговорник</button><button class="btn ghost" data-act="nextday">Открыть следующий день сейчас</button></div>`;
   } else {
     const d=dueKeys().length;
     body=`<h2>Курс пройден</h2><p class="sub">Все ${EPISODES.length} дней позади. Повторения продолжают приходить по расписанию.</p>
@@ -1619,49 +1639,84 @@ function famCard(ri, mark){
   const [root,mean,words]=ROOTS[ri];
   return `<div class="card rootcard"><div class="rootline"><bdi dir="rtl" lang="he" class="rootletters">${root.split('-').join(' · ')}</bdi><span>${mean}</span></div>
    <div class="list">${words.map(w=>{ const x=rw(w), k=w[0], kn=k&&known(k), nw=!k;
-     return `<div class="row ${!kn&&k?'locked':''}"><div class="he hefont" lang="he" dir="rtl">${hlRoot(x.he,root)}</div>
+     return `<div class="row ${!kn&&k?'locked':''}"><div class="he hefont" lang="he" dir="rtl"><bdi dir="rtl">${hlRoot(x.he,root)}</bdi></div>
        <div class="meta">${x.ru}<small>${x.tr}${nw?' · новое слово':''}${k&&!kn?' · ещё не выучено':''}</small></div>
        <button class="say" data-say="${x.he}" aria-label="Послушать">▶</button></div>`; }).join('')}</div></div>`;
 }
+/* дополнительные родственники, чтобы в каждой семье было что искать */
+const MORE_ROOTS={
+ 'ס-ל-ח':[[null,'סְלִיחוֹת','слихо́т','покаянные молитвы перед Йом Кипуром']],
+ 'ד-ר-כ':[[null,'מַדְרִיךְ','мадри́х','гид, инструктор'],[null,'הַדְרָכָה','hадраха́','инструктаж']],
+ 'ר-ג-ש':[[null,'מְרַגֵּשׁ','мэрагэ́ш','трогательный, волнующий'],[null,'לְהַרְגִּישׁ','леhарги́ш','чувствовать']],
+ 'ק-ל-ט':[[null,'לִקְלֹט','ликло́т','улавливать, принимать'],[null,'קַלֶּטֶת','кале́тет','кассета']],
+ 'ח-ל-ב':[[null,'לַחֲלֹב','лахало́в','доить']],
+ 'ד-ח-פ':[[null,'לִדְחֹף','лидхо́ф','толкать'],[null,'דְּחִיפוּת','дхифу́т','срочность']],
+ 'צ-מ-ח':[[null,'צִמְחִיָּה','цимхия́','растительность']],
+ 'ר-ח-ב':[[null,'רֹחַב','ро́хав','ширина'],[null,'מֶרְחָב מוּגָן','мерха́в муга́н','защищённая комната, «мамад»']],
+ 'ק-ר-ר':[[null,'קָרִיר','кари́р','прохладно'],[null,'קֹר','кор','холод']],
+ 'ק-ב-ל':[[null,'קַבָּלַת פָּנִים','кабала́т пани́м','приём, ресепшн'],[null,'מְקֻבָּל','мекуба́ль','принято']],
+ 'ס-ד-ר':[[null,'סִדּוּר','сиду́р','молитвенник; устройство'],[null,'מְסֻדָּר','месуда́р','аккуратный']],
+ 'ג-ד-ל':[[null,'גֹּדֶל','го́дель','размер, величина'],[null,'מִגְדָּל','мигда́ль','башня']],
+ 'י-ק-ר':[[null,'יַקִּיר','яки́р','дорогой, любимый']],
+ 'ע-צ-ר':[[null,'מַעְצָר','маца́р','арест']],
+};
+ROOTS.forEach(r=>{ if(MORE_ROOTS[r[0]]) r[2].push(...MORE_ROOTS[r[0]]); });
+Object.assign(FIX,{'לִקְלֹט':'לקלוט','לַחֲלֹב':'לחלוב','לִדְחֹף':'לדחוף','צִמְחִיָּה':'צמחייה','רֹחַב':'רוחב','קֹר':'קור','מְקֻבָּל':'מקובל','סִדּוּר':'סידור','מְסֻדָּר':'מסודר','גֹּדֶל':'גודל'});
+const NIKUD=/[\u0591-\u05C7]/g;
+const lettersOf=he=>(he.replace(NIKUD,'').match(/[\u05D0-\u05EA]/g)||[]).map(c=>FINAL[c]||c);
 function makeRootRound(){
   const fams=eligibleFams(); if(fams.length<4) return null;
-  const rich=fams.filter(i=>famKnown(i)>=2);
-  const ri=(rich.length&&Math.random()<.6)?rich[Math.floor(Math.random()*rich.length)]:fams[Math.floor(Math.random()*fams.length)];
-  const words=ROOTS[ri][2];
+  /* семья, где кроме загаданного слова есть хотя бы два родственника */
+  const good=fams.filter(i=>ROOTS[i][2].filter(wKnown).length>=3);
+  if(!good.length) return null;
+  const rich=good.filter(i=>famKnown(i)>=2);
+  const ri=(rich.length&&Math.random()<.5)?rich[Math.floor(Math.random()*rich.length)]:good[Math.floor(Math.random()*good.length)];
+  const [root,,words]=ROOTS[ri];
   const knownW=words.filter(w=>w[0]&&known(w[0]));
   const target=knownW[Math.floor(Math.random()*knownW.length)];
-  const mates=shuffle(words.filter(w=>w!==target&&wKnown(w)));
-  const nRight=Math.min(mates.length, Math.random()<.5?1:2);
-  const right=mates.slice(0,Math.max(1,nRight));
-  const others=shuffle(fams.filter(i=>i!==ri)).slice(0,6).map(i=>{ const ws=ROOTS[i][2].filter(w=>w[0]&&known(w[0])); return ws[Math.floor(Math.random()*ws.length)]; });
-  const wrong=others.slice(0,5-right.length);
-  const opts=shuffle([...right.map(w=>({w,ri,ok:true})),...wrong.map(w=>({w,ri:ROOTS.findIndex(r=>r[2].includes(w)),ok:false}))]);
+  const right=shuffle(words.filter(w=>w!==target&&wKnown(w))).slice(0,2);
+  /* обманки: слова других корней, по возможности с похожими буквами */
+  const rl=root.split('-');
+  const pool=[]; fams.concat(ROOTS.map((r,i)=>i).filter(i=>!fams.includes(i))).forEach(i=>{ if(i===ri) return;
+    ROOTS[i][2].forEach(w=>{ if(!wKnown(w)) return; const ls=lettersOf(rw(w).he); let seq=0; for(const l of ls) if(l===rl[seq]) seq++; if(seq===rl.length) return; const sim=rl.filter(l=>ls.includes(l)).length; pool.push({w,ri:i,sim:sim+(w[0]?0.5:0)+Math.random()}); }); });
+  pool.sort((a,b)=>b.sim-a.sim);
+  const usedFam=new Set(); const wrong=[];
+  for(const p of pool){ if(wrong.length>=3) break; if(usedFam.has(p.ri)) continue; usedFam.add(p.ri); wrong.push(p); }
+  const opts=shuffle([...right.map(w=>({w,ri,ok:true})),...wrong.map(p=>({w:p.w,ri:p.ri,ok:false}))]);
   return {ri,target,opts,picked:new Set(),checked:false};
 }
 function rootsHTML(){
   const P_=P(); P_.rootStats=P_.rootStats||{played:0,perfect:0};
   let game='';
-  if(!rootsReady()) game=`<div class="card"><p class="sub" style="margin:0">Игра откроется, когда наберётся хотя бы четыре семьи корней. Ещё немного дней — и начнём.</p></div>`;
+  if(!RR) RR=makeRootRound();
+  if(!RR) game=`<div class="card"><p class="sub" style="margin:0">Игра откроется, когда наберётся хотя бы четыре семьи корней. Ещё немного дней — и начнём.</p></div>`;
   else {
-    if(!RR) RR=makeRootRound();
-    const q=RR, t=rw(q.target);
-    const opts=q.opts.map((o,i)=>{ const x=rw(o.w); let cls='he hefont mt';
-      if(q.checked){ if(o.ok&&q.picked.has(i)) cls+=' right'; else if(o.ok) cls+=' miss'; else if(q.picked.has(i)) cls+=' wrong'; }
-      else if(q.picked.has(i)) cls+=' sel';
-      return `<button class="${cls}" data-rp="${i}" ${q.checked?'disabled':''}><bdi dir="rtl" lang="he">${q.checked?hlRoot(x.he,ROOTS[o.ri][0]):fmt(x.he)}</bdi>${q.checked?`<small>${x.ru}</small>`:''}</button>`; }).join('');
+    const q=RR, t=rw(q.target), root=ROOTS[q.ri][0];
+    const opts=q.opts.map((o,i)=>{ const x=rw(o.w); const pk=q.picked.has(i); let cls='ropt', tag='';
+      if(q.checked){
+        if(o.ok&&pk){ cls+=' right'; tag='✓ однокоренное'; }
+        else if(o.ok){ cls+=' miss'; tag='пропущено — однокоренное'; }
+        else if(pk){ cls+=' wrong'; tag=`✗ другой корень: ${ROOTS[o.ri][0]}`; }
+        else { cls+=' neutral'; tag=`другой корень: ${ROOTS[o.ri][0]}`; }
+      } else if(pk) cls+=' sel';
+      const he=q.checked&&o.ok?hlRoot(x.he,root):fmt(x.he);
+      return `<button class="${cls}" data-rp="${i}" ${q.checked?'disabled':''} aria-pressed="${pk}">
+        <bdi dir="rtl" lang="he" class="rhe">${he}</bdi>${q.checked?`<span class="rru">${x.ru}</span><span class="rtag">${tag}</span>`:''}</button>`; }).join('');
     let fb='';
     if(q.checked){
-      const perfect=q.opts.every((o,i)=>o.ok===q.picked.has(i));
-      fb=`<p class="feedback">${perfect?'Все однокоренные найдены.':`<b>Пнина:</b> ${mixed(q.scold||'')} Смотри на три буквы корня — они подсвечены.`}</p>${famCard(q.ri)}
-       <div class="actions"><button class="btn" data-act="rootnext">Ещё раунд</button></div>`;
+      const nRight=q.opts.filter(o=>o.ok).length, found=q.opts.filter((o,i)=>o.ok&&q.picked.has(i)).length, extra=q.opts.filter((o,i)=>!o.ok&&q.picked.has(i)).length;
+      const perfect=found===nRight&&!extra;
+      fb=`<div class="verdict ${perfect?'good':'bad'}">${perfect?`<b>Верно!</b> Оба однокоренных найдены.`:`<b>${found?'Почти.':'Мимо.'}</b> Найдено ${found} из ${nRight}${extra?`, ${extra} ${plural(extra,'лишнее','лишних','лишних')}`:''}.<br><span class="pn">Пнина: ${mixed(q.scold||'')}</span>`}</div>
+       <div class="actions"><button class="btn" data-act="rootnext">Следующий раунд</button></div>
+       <p class="group">Вся семья корня</p>${famCard(q.ri)}`;
     } else fb=`<div class="actions"><button class="btn" data-act="rootcheck" ${q.picked.size?'':'disabled'}>Проверить</button></div>`;
-    game=`<div class="q"><p class="ask">Найди слова с тем же корнем, что и:</p>
-      <p class="target he hefont" lang="he">${q.checked?hlRoot(t.he,ROOTS[q.ri][0]):fmt(t.he)}</p><p class="sub" style="margin:-10px 0 14px">${t.ru} · ${t.tr}</p>
-      <div class="opts">${opts}</div>${fb}</div>`;
+    game=`<div class="q"><p class="ask">Отметь два слова с тем же корнем, что и:</p>
+      <div class="rtarget"><bdi dir="rtl" lang="he" class="hefont">${q.checked?hlRoot(t.he,root):fmt(t.he)}</bdi><span>${t.ru} · ${t.tr}</span></div>
+      <div class="ropts">${opts}</div>${fb}</div>`;
   }
   const fams=eligibleFams().sort((a,b)=>famKnown(b)-famKnown(a));
-  return `<h2>Корни</h2><p class="sub">Почти каждое слово в иврите собрано из корня — обычно трёх согласных — и шаблона. Корень даёт общий смысл, поэтому по знакомому корню можно угадывать новые слова. Иногда смысл со временем расходится: по «книге» не угадаешь «парикмахера», хотя корень у них один.
-   ${P_.rootStats.played?` Сыграно раундов: ${P_.rootStats.played}, без ошибок: ${P_.rootStats.perfect}.`:''}</p>
+  return `<h2>Корни</h2><p class="sub">Почти каждое слово в иврите собрано из корня — обычно трёх согласных — и шаблона. По знакомому корню можно угадывать новые слова. Обманки подобраны с похожими буквами, так что смотри на порядок букв, а не на отдельные совпадения.
+   ${P_.rootStats.played?` Сыграно: ${P_.rootStats.played}, без ошибок: ${P_.rootStats.perfect}.`:''}</p>
    ${game}
    <p class="group">Твои семьи корней — ${fams.length}</p>${fams.map(i=>famCard(i)).join('')}`;
 }
@@ -1773,6 +1828,7 @@ document.addEventListener('click',e=>{
   else if(a==='rootcheck'){ RR.checked=true; const perfect=RR.opts.every((o,i)=>o.ok===RR.picked.has(i));
     const st=P().rootStats=P().rootStats||{played:0,perfect:0}; st.played++; if(perfect) st.perfect++; else RR.scold=pickScold(); save(); render(); }
   else if(a==='rootnext'){ RR=makeRootRound(); render(); window.scrollTo(0,0); }
+  else if(a==='nextday'){ P().lastDone=null; save(); render(); }
   else if(a==='toggle-mat'){ P().mat=!strongOn(); save(); render(); }
   else if(a==='start'){ startDay(); window.scrollTo(0,0); }
   else if(a==='reviewonly'){ S={review:buildReview(dueKeys()),ri:0,reviewOnly:true}; view='review'; render(); }
